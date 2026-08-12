@@ -66,7 +66,7 @@ img {
 }
 
 .brand {
-  width: clamp(142px, 17vw, 230px);
+  width: clamp(126px, 13vw, 170px);
 }
 
 .main-nav {
@@ -125,7 +125,7 @@ img {
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 136px clamp(18px, 4vw, 56px) 70px;
+  padding: 182px clamp(18px, 4vw, 56px) 70px;
   text-align: center;
 }
 
@@ -868,7 +868,7 @@ legend {
 }
 
 .construction-logo {
-  width: clamp(112px, 11vw, 150px);
+  width: clamp(98px, 9vw, 126px);
 }
 
 .construction-panel {
