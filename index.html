@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Centro Juvenil Savio, centro juvenil salesiano en Madrid. Actividades los sábados para niños, adolescentes y jóvenes."
+    />
+    <title>Centro Juvenil Savio | Siempre alegres</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#inicio" aria-label="Centro Juvenil Savio">
+        <img src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" data-nav>
+        <a href="#secciones">Secciones</a>
+        <a href="#estilo">Estilo</a>
+        <a href="#contacto">Contacto</a>
+        <a href="tienda.html">Tienda online</a>
+        <a class="nav-cta" href="#apuntarse">Ven el sábado</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-content">
+          <h1 class="reveal pop">Centro Juvenil Savio</h1>
+          <p class="hero-copy reveal">
+            El patio salesiano de los sábados: juegos, grupo, fe, convivencia y mucha vida compartida.
+          </p>
+          <p class="hero-claim reveal pop">Siempre alegres</p>
+          <div class="photo-placeholder reveal" aria-label="Espacio reservado para una foto del centro juvenil">
+            <span>Foto</span>
+          </div>
+          <p class="hero-copy reveal">
+            Para chicos y chicas de 8 a 19 años, en Salesianos Santo Domingo Savio.
+          </p>
+          <div class="hero-actions" aria-label="Acciones principales">
+            <a class="button primary" href="#apuntarse" data-label="Quiero ir">Quiero ir</a>
+            <a class="button secondary" href="#secciones" data-label="Ver edades">Ver edades</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-info" aria-label="Información rápida">
+        <article class="reveal">
+          <span>Sábados</span>
+          <strong>16:30 - 19:30</strong>
+        </article>
+        <article class="reveal">
+          <span>Edades</span>
+          <strong>8 - 19 años</strong>
+        </article>
+        <article class="reveal">
+          <span>Redes</span>
+          <strong>@cjsavio</strong>
+        </article>
+      </section>
+
+      <section class="section intro-section">
+        <div class="section-kicker reveal">Quiénes somos</div>
+        <div class="intro-grid">
+          <h2 class="reveal pop">Un centro juvenil para encontrarse, jugar y crecer.</h2>
+          <p class="reveal">
+            En Savio vivimos el tiempo libre como una oportunidad para educar, acompañar y celebrar la vida.
+            Cada sábado nos reunimos por edades para compartir dinámicas, juegos, talleres, reflexión y momentos
+            de grupo en un ambiente cercano y salesiano.
+          </p>
+        </div>
+      </section>
+
+      <section class="section sections-band" id="secciones">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker reveal">Secciones</p>
+            <h2 class="reveal pop">Cada edad tiene su grupo.</h2>
+          </div>
+          <p class="reveal">
+            Tres grupos para adaptar las actividades al momento vital de cada chico y chica, manteniendo siempre
+            el mismo espíritu: amistad, alegría y acompañamiento.
+          </p>
+        </div>
+        <div class="age-grid">
+          <article class="age-card chiqui reveal">
+            <p>8-11 años</p>
+            <h3>Chiqui</h3>
+            <span>Juegos, talleres, cuentos, dinámicas y primeras experiencias de grupo.</span>
+          </article>
+          <article class="age-card preas reveal">
+            <p>12-13 años</p>
+            <h3>Preas</h3>
+            <span>Actividades para hacer pandilla, crecer en confianza y descubrir nuevos retos.</span>
+          </article>
+          <article class="age-card jovenes reveal">
+            <p>14-19 años</p>
+            <h3>Jóvenes</h3>
+            <span>Convivencia, compromiso, proyectos y espacios para compartir vida y preguntas.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section style-section" id="estilo">
+        <div class="section-heading compact">
+          <div>
+            <p class="section-kicker reveal">Al estilo de Don Bosco</p>
+            <h2 class="reveal pop">Casa, iglesia, escuela y patio.</h2>
+          </div>
+          <p class="reveal">
+            Una forma sencilla de estar con los jóvenes: acoger, acompañar, educar y crear un ambiente donde
+            todos puedan sentirse en casa.
+          </p>
+        </div>
+        <div class="pillars">
+          <article class="reveal">
+            <svg class="pillar-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M10 29 32 11l22 18v24a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4Z" />
+              <path d="M25 57V38h14v19" />
+            </svg>
+            <strong>Casa</strong>
+            <span>que acoge</span>
+          </article>
+          <article class="reveal">
+            <svg class="pillar-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M32 8v48" />
+              <path d="M19 21h26" />
+              <path d="M14 56h36" />
+            </svg>
+            <strong>Iglesia</strong>
+            <span>que evangeliza</span>
+          </article>
+          <article class="reveal">
+            <svg class="pillar-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M12 18h40v34H12z" />
+              <path d="M18 12h28" />
+              <path d="M20 28h24M20 38h18" />
+            </svg>
+            <strong>Escuela</strong>
+            <span>que prepara</span>
+          </article>
+          <article class="reveal">
+            <svg class="pillar-icon" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="22" cy="24" r="8" />
+              <circle cx="43" cy="25" r="7" />
+              <path d="M10 54c2-11 9-17 18-17s16 6 18 17" />
+              <path d="M34 53c2-8 8-13 16-13 3 0 5 .5 7 1.5" />
+            </svg>
+            <strong>Patio</strong>
+            <span>que reúne</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="join-section" id="apuntarse">
+        <div class="join-inner">
+          <div>
+            <p class="section-kicker reveal">Cómo me apunto</p>
+            <h2 class="reveal pop">Este sábado puede ser tu primer día.</h2>
+            <p class="reveal">
+              Puedes pasarte por el centro juvenil de 16:30 a 19:30 o escribirnos para resolver dudas antes de venir.
+            </p>
+          </div>
+          <div class="join-actions">
+            <a class="button primary" href="mailto:centrojuvenil@salesianosdosa.com" data-label="Escribir email">Escribir email</a>
+            <a class="button secondary" href="#contacto" data-label="Ver redes">Ver redes</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contacto">
+        <div class="contact-copy">
+          <p class="section-kicker reveal">Contacto</p>
+          <h2 class="reveal pop">Estamos en Salesianos Santo Domingo Savio.</h2>
+          <p class="reveal">
+            Calle Santo Domingo Savio, 2, 28017 Madrid. También puedes seguir la actividad del centro juvenil
+            en redes sociales.
+          </p>
+        </div>
+        <div class="contact-list reveal">
+          <a href="mailto:centrojuvenil@salesianosdosa.com">centrojuvenil@salesianosdosa.com</a>
+          <a href="https://www.cjsavio.es" target="_blank" rel="noreferrer">www.cjsavio.es</a>
+        </div>
+        <div class="social-grid reveal" aria-label="Redes sociales">
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+            <span>IG</span>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
+            <span>FB</span>
+            Facebook
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">
+            <span>YT</span>
+            YouTube
+          </a>
+          <a href="https://twitter.com/" target="_blank" rel="noreferrer">
+            <span>X</span>
+            X / Twitter
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="assets/centro-juvenil-white.png" alt="Centro Juvenil Savio" />
+      <p>Centro Juvenil Savio © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

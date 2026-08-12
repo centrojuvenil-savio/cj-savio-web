@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Sudadera Centro Juvenil Savio. Elige talla y color."
+    />
+    <title>Sudadera Centro Juvenil | Tienda Savio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Centro Juvenil Savio">
+        <img src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" data-nav>
+        <a href="index.html#secciones">Secciones</a>
+        <a href="index.html#estilo">Estilo</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="tienda.html">Tienda online</a>
+        <a class="nav-cta" href="index.html#apuntarse">Ven el sábado</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="product-detail">
+        <div class="product-preview reveal">
+          <div class="product-image product-hoodie product-image-large" aria-hidden="true">
+            <span>Sudadera</span>
+          </div>
+        </div>
+        <form class="product-form reveal" data-product-form>
+          <a class="back-link" href="tienda.html">Volver a tienda</a>
+          <p class="section-kicker">Sudadera</p>
+          <h1>Sudadera Centro Juvenil</h1>
+          <p>
+            Producto de prueba para validar la ficha: selector de talla y color antes de enlazarlo con el sistema que quieras.
+          </p>
+          <strong class="detail-price">24,00 €</strong>
+
+          <fieldset>
+            <legend>Talla</legend>
+            <div class="option-grid">
+              <label><input type="radio" name="size" value="S" checked /> <span>S</span></label>
+              <label><input type="radio" name="size" value="M" /> <span>M</span></label>
+              <label><input type="radio" name="size" value="L" /> <span>L</span></label>
+              <label><input type="radio" name="size" value="XL" /> <span>XL</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Color</legend>
+            <div class="color-options">
+              <label>
+                <input type="radio" name="color" value="Azul Savio" checked />
+                <span style="--swatch: #00469f">Azul Savio</span>
+              </label>
+              <label>
+                <input type="radio" name="color" value="Rojo patio" />
+                <span style="--swatch: #f8493a">Rojo patio</span>
+              </label>
+              <label>
+                <input type="radio" name="color" value="Celeste" />
+                <span style="--swatch: #68c1ec">Celeste</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="selection-summary" data-selection-summary>
+            Sudadera Centro Juvenil · S · Azul Savio
+          </div>
+          <button class="button primary" type="button">Comprar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="assets/centro-juvenil-white.png" alt="Centro Juvenil Savio" />
+      <p>Centro Juvenil Savio © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

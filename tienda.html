@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Tienda online del Centro Juvenil Savio con productos de prueba."
+    />
+    <title>Tienda online | Centro Juvenil Savio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Centro Juvenil Savio">
+        <img src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" data-nav>
+        <a href="index.html#secciones">Secciones</a>
+        <a href="index.html#estilo">Estilo</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="tienda.html">Tienda online</a>
+        <a class="nav-cta" href="index.html#apuntarse">Ven el sábado</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="shop-hero">
+        <div class="shop-content">
+          <p class="section-kicker reveal">Tienda online</p>
+          <h1 class="reveal pop">Tienda online.</h1>
+          <p class="hero-copy reveal">
+            Productos de prueba para ver cómo respiraría la tienda del Centro Juvenil Savio.
+          </p>
+          <div class="product-grid">
+            <article class="product-card reveal">
+              <div class="product-image product-shirt" aria-hidden="true">
+                <span>Camiseta</span>
+              </div>
+              <div class="product-info">
+                <p class="product-tag">Prueba</p>
+                <h2>Camiseta Siempre Alegres</h2>
+                <p>Algodón, color azul Savio y frase de Don Bosco en el pecho.</p>
+                <div class="product-footer">
+                  <strong>12,00 €</strong>
+                  <a class="button secondary" href="producto-sudadera.html" data-label="Ver producto">Ver producto</a>
+                </div>
+              </div>
+            </article>
+            <article class="product-card reveal">
+              <div class="product-image product-hoodie" aria-hidden="true">
+                <span>Sudadera</span>
+              </div>
+              <div class="product-info">
+                <p class="product-tag">Prueba</p>
+                <h2>Sudadera Centro Juvenil</h2>
+                <p>Sudadera cómoda con logo Savio y detalle rojo en manga.</p>
+                <div class="product-footer">
+                  <strong>24,00 €</strong>
+                  <a class="button primary" href="producto-sudadera.html" data-label="Ver producto">Ver producto</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <a class="button primary reveal" href="index.html" data-label="Volver al inicio">Volver al inicio</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="assets/centro-juvenil-white.png" alt="Centro Juvenil Savio" />
+      <p>Centro Juvenil Savio © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
