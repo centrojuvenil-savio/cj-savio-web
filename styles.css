@@ -381,19 +381,25 @@ h3 {
 }
 
 .season-alert::before {
+  content: "";
+  position: absolute;
+  right: 12px;
+  bottom: -22px;
+  width: 152px;
+  height: 132px;
+  background: rgba(17, 17, 27, 0.14);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+.season-alert::after {
   content: "!";
   position: absolute;
-  right: 14px;
-  bottom: -26px;
-  width: 132px;
-  height: 132px;
-  display: grid;
-  place-items: center;
-  border: 10px solid rgba(17, 17, 27, 0.14);
-  border-radius: 50%;
+  right: 69px;
+  bottom: 4px;
   color: rgba(17, 17, 27, 0.14);
   font-family: "Archivo Black", Impact, sans-serif;
-  font-size: 6rem;
+  font-size: 5.4rem;
   line-height: 1;
   pointer-events: none;
 }
