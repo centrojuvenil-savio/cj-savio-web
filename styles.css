@@ -209,8 +209,7 @@ h3 {
 .photo-placeholder {
   width: min(760px, 88vw);
   aspect-ratio: 16 / 8.4;
-  display: grid;
-  place-items: center;
+  overflow: hidden;
   margin: 8px auto 26px;
   border: 4px solid var(--ink);
   border-radius: 28px;
@@ -219,11 +218,10 @@ h3 {
   transform: rotate(-1.4deg);
 }
 
-.photo-placeholder span {
-  color: rgba(17, 17, 27, 0.16);
-  font-family: "Archivo Black", Impact, sans-serif;
-  font-size: clamp(2.4rem, 8vw, 6rem);
-  text-transform: uppercase;
+.photo-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-actions,
