@@ -520,6 +520,11 @@ section[id] {
   z-index: 3;
 }
 
+.saturday-section {
+  z-index: 4;
+  background: var(--yellow);
+}
+
 .intro-grid,
 .section-heading,
 .contact-section {
@@ -539,8 +544,95 @@ section[id] {
   line-height: 1.34;
 }
 
+.saturday-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.saturday-flow article {
+  position: relative;
+  overflow: hidden;
+  min-height: 235px;
+  display: grid;
+  align-content: space-between;
+  border: 4px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 7px 7px 0 var(--ink);
+  padding: 22px;
+}
+
+.saturday-flow article::after {
+  content: "";
+  position: absolute;
+  right: -26px;
+  bottom: -34px;
+  width: 122px;
+  height: 122px;
+  border: 14px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.saturday-flow article:nth-child(2) {
+  background: var(--sky);
+}
+
+.saturday-flow article:nth-child(3) {
+  color: var(--white);
+  background: var(--blue);
+}
+
+.saturday-flow article:nth-child(4) {
+  background: var(--white);
+}
+
+.saturday-flow article:nth-child(5) {
+  color: var(--white);
+  background: var(--red);
+}
+
+.saturday-flow span,
+.saturday-flow strong,
+.saturday-flow p {
+  position: relative;
+  z-index: 1;
+}
+
+.saturday-flow span {
+  width: max-content;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 7px 10px;
+}
+
+.saturday-flow strong {
+  display: block;
+  margin: 34px 0 10px;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.45rem, 2.1vw, 2.25rem);
+  line-height: 0.98;
+}
+
+.saturday-flow p {
+  margin: 0;
+  color: rgba(17, 17, 27, 0.66);
+  font-weight: 800;
+  line-height: 1.22;
+}
+
+.saturday-flow article:nth-child(3) p,
+.saturday-flow article:nth-child(5) p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
 .sections-band {
-  z-index: 4;
+  z-index: 5;
   background: var(--blue);
 }
 
@@ -603,7 +695,7 @@ section[id] {
 
 .style-section {
   position: relative;
-  z-index: 5;
+  z-index: 6;
 }
 
 .section-heading.compact {
@@ -678,7 +770,7 @@ section[id] {
 
 .join-section {
   position: relative;
-  z-index: 6;
+  z-index: 7;
   border-top: 4px solid var(--ink);
   padding: clamp(70px, 10vw, 126px) clamp(18px, 5vw, 72px);
   background: var(--red);
@@ -730,7 +822,7 @@ section[id] {
 }
 
 .contact-section {
-  z-index: 7;
+  z-index: 8;
   min-height: 100svh;
   background: var(--paper);
 }
@@ -762,6 +854,68 @@ section[id] {
   outline: none;
 }
 
+.map-card {
+  position: relative;
+  overflow: hidden;
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 10px;
+  min-height: 190px;
+  align-content: end;
+  border: 4px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--yellow);
+  box-shadow: 8px 8px 0 var(--ink);
+  color: var(--ink);
+  padding: 24px;
+}
+
+.map-card::after {
+  content: "";
+  position: absolute;
+  right: -16px;
+  bottom: -36px;
+  width: 170px;
+  height: 170px;
+  border: 14px solid rgba(17, 17, 27, 0.13);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+}
+
+.map-card span,
+.map-card strong,
+.map-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.map-card span {
+  width: max-content;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 7px 10px;
+  text-transform: uppercase;
+}
+
+.map-card strong {
+  display: block;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  line-height: 0.95;
+}
+
+.map-card p {
+  max-width: 54ch;
+  margin: 0;
+  color: rgba(17, 17, 27, 0.66);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-weight: 800;
+}
+
 .social-grid {
   grid-column: 1 / -1;
   display: grid;
@@ -781,6 +935,7 @@ section[id] {
   box-shadow: 6px 6px 0 var(--ink);
   font-family: "Archivo Black", Impact, sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.8rem);
+  line-height: 0.98;
   padding: 18px;
 }
 
@@ -807,6 +962,33 @@ section[id] {
   font-size: 0.82rem;
   font-weight: 900;
   padding: 7px 10px;
+}
+
+.closing-band {
+  position: relative;
+  z-index: 9;
+  display: grid;
+  justify-items: center;
+  border-top: 4px solid var(--ink);
+  background: var(--blue);
+  color: var(--white);
+  padding: clamp(54px, 8vw, 90px) clamp(18px, 5vw, 72px);
+  text-align: center;
+}
+
+.closing-band p {
+  margin: 0 0 8px;
+  color: var(--yellow);
+  font-size: clamp(1rem, 2vw, 1.45rem);
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.closing-band strong {
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(3rem, 9vw, 8rem);
+  line-height: 0.92;
+  text-transform: uppercase;
 }
 
 .shop-hero {
@@ -1346,9 +1528,14 @@ legend {
 
   .age-grid,
   .pillars,
+  .saturday-flow,
   .product-grid,
   .social-grid {
     grid-template-columns: 1fr;
+  }
+
+  .saturday-flow article {
+    min-height: 205px;
   }
 
   .age-card {
