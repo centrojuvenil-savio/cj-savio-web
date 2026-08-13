@@ -1337,6 +1337,10 @@ legend {
     font-size: clamp(2.35rem, 12vw, 3.7rem);
   }
 
+  .shop-gate-copy .nowrap {
+    white-space: normal;
+  }
+
   .shop-gate .construction-art-wrap {
     width: min(22vh, 190px);
   }
