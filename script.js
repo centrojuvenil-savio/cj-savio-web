@@ -38,6 +38,45 @@ function updateHeader() {
 updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
+const seasonAlert = document.querySelector("[data-season-alert]");
+const seasonAlertClose = document.querySelector("[data-season-alert-close]");
+const seasonAlertKey = "cj-savio-season-alert-closed-v2";
+
+function isSeasonAlertClosed() {
+  try {
+    return window.sessionStorage?.getItem(seasonAlertKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function closeSeasonAlert() {
+  if (!seasonAlert) return;
+  seasonAlert.classList.remove("is-visible");
+  try {
+    window.sessionStorage?.setItem(seasonAlertKey, "true");
+  } catch {
+    // Some preview contexts block storage; closing still works for this page view.
+  }
+  window.setTimeout(() => {
+    seasonAlert.hidden = true;
+  }, 260);
+}
+
+function updateSeasonAlert() {
+  if (!seasonAlert || isSeasonAlertClosed() || seasonAlert.classList.contains("is-visible")) return;
+  if (window.scrollY < 140) return;
+  seasonAlert.hidden = false;
+  window.requestAnimationFrame(() => seasonAlert.classList.add("is-visible"));
+}
+
+if (seasonAlert) {
+  seasonAlert.hidden = true;
+  seasonAlertClose?.addEventListener("click", closeSeasonAlert);
+  window.addEventListener("scroll", updateSeasonAlert, { passive: true });
+  updateSeasonAlert();
+}
+
 const revealItems = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
