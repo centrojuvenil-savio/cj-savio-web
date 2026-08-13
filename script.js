@@ -145,7 +145,7 @@ function updateSelectionSummary() {
   const formData = new FormData(productForm);
   const size = formData.get("size");
   const color = formData.get("color");
-  selectionSummary.textContent = `Sudadera Centro Juvenil · ${size} · ${color}`;
+  selectionSummary.textContent = `Camiseta Sabes Silbar · ${size} · ${color}`;
 }
 
 if (productForm) {
