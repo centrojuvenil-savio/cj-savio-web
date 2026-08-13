@@ -125,8 +125,9 @@ img {
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 182px clamp(18px, 4vw, 56px) 70px;
+  padding: 220px clamp(18px, 4vw, 56px) 70px;
   text-align: center;
+  z-index: 1;
 }
 
 .hero::after {
@@ -171,6 +172,80 @@ h1 {
   max-width: 11ch;
   margin: 18px 0 18px;
   font-size: clamp(3.9rem, 11vw, 8.6rem);
+}
+
+.hero-title {
+  max-width: 11ch;
+  margin: 18px 0 18px;
+  font-size: clamp(3.9rem, 11vw, 8.6rem);
+}
+
+.title-word,
+.title-letters {
+  display: block;
+  overflow: hidden;
+}
+
+.title-rise {
+  animation: titleRise 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.title-rise-delay {
+  animation-delay: 140ms;
+}
+
+.title-letters {
+  display: flex;
+  justify-content: center;
+}
+
+.title-letters span {
+  display: inline-block;
+  animation: letterIn 540ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.title-letters span:nth-child(1) {
+  animation-delay: 360ms;
+}
+
+.title-letters span:nth-child(2) {
+  animation-delay: 430ms;
+}
+
+.title-letters span:nth-child(3) {
+  animation-delay: 500ms;
+}
+
+.title-letters span:nth-child(4) {
+  animation-delay: 570ms;
+}
+
+.title-letters span:nth-child(5) {
+  animation-delay: 640ms;
+}
+
+@keyframes titleRise {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.8em) rotate(4deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
 }
 
 h2 {
@@ -275,6 +350,8 @@ h3 {
 }
 
 .quick-info {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-block: 4px solid var(--ink);
@@ -311,12 +388,20 @@ section[id] {
 }
 
 .section {
+  position: relative;
+  z-index: 3;
+  border-top: 4px solid var(--ink);
+  box-shadow: 0 -28px 70px rgba(17, 17, 27, 0.16);
   padding: clamp(70px, 10vw, 126px) clamp(18px, 5vw, 72px);
 }
 
 .intro-section,
 .style-section {
   background: var(--paper);
+}
+
+.intro-section {
+  z-index: 3;
 }
 
 .intro-grid,
@@ -339,6 +424,7 @@ section[id] {
 }
 
 .sections-band {
+  z-index: 4;
   background: var(--blue);
 }
 
@@ -401,6 +487,7 @@ section[id] {
 
 .style-section {
   position: relative;
+  z-index: 5;
 }
 
 .section-heading.compact {
@@ -474,18 +561,26 @@ section[id] {
 }
 
 .join-section {
+  position: relative;
+  z-index: 6;
+  border-top: 4px solid var(--ink);
+  box-shadow: 0 -28px 70px rgba(17, 17, 27, 0.16);
   padding: clamp(70px, 10vw, 126px) clamp(18px, 5vw, 72px);
   background: var(--red);
 }
 
 .join-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1fr);
   gap: 34px;
-  align-items: end;
+  align-items: center;
   max-width: 1180px;
   margin: 0 auto;
   color: var(--white);
+}
+
+.join-actions {
+  grid-column: 1 / -1;
 }
 
 .join-inner .section-kicker,
@@ -494,7 +589,8 @@ section[id] {
 }
 
 .join-inner h2 {
-  max-width: 10ch;
+  max-width: 10.5ch;
+  font-size: clamp(2.8rem, 5.8vw, 5.4rem);
 }
 
 .join-inner .button.primary {
@@ -502,7 +598,25 @@ section[id] {
   background: var(--white);
 }
 
+.join-photo {
+  overflow: hidden;
+  border: 4px solid var(--ink);
+  border-radius: 28px;
+  background: var(--paper);
+  box-shadow: 10px 10px 0 var(--ink);
+  transform: rotate(1.2deg);
+}
+
+.join-photo img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
 .contact-section {
+  z-index: 7;
+  min-height: 100svh;
   background: var(--paper);
 }
 
@@ -1027,6 +1141,16 @@ legend {
   .join-actions {
     justify-content: flex-start;
   }
+
+  .section,
+  .join-section {
+    position: relative;
+    min-height: auto;
+  }
+
+  .join-actions {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1039,6 +1163,10 @@ legend {
   }
 
   h1 {
+    font-size: clamp(3.3rem, 16vw, 4.7rem);
+  }
+
+  .hero-title {
     font-size: clamp(3.3rem, 16vw, 4.7rem);
   }
 
@@ -1128,6 +1256,10 @@ legend {
   transform: rotate(-1.4deg) scale(1);
 }
 
+.join-photo.reveal.is-visible {
+  transform: rotate(1.2deg) scale(1);
+}
+
 .product-card:nth-child(1).reveal.is-visible {
   transform: rotate(-1deg) scale(1);
 }
@@ -1162,6 +1294,12 @@ legend {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .title-rise,
+  .title-letters span,
+  .construction-enter {
+    animation: none;
   }
 
   .button,
