@@ -58,6 +58,58 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
+const shopGate = document.querySelector("[data-shop-gate]");
+const shopFull = document.querySelector("[data-shop-full]");
+const shopPasswordForm = document.querySelector("[data-shop-password]");
+const shopPasswordError = document.querySelector("[data-shop-error]");
+const shopAccessKey = "cj-savio-shop-unlocked-v3";
+
+function getShopUnlocked() {
+  try {
+    return window.localStorage?.getItem(shopAccessKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function rememberShopUnlock() {
+  try {
+    window.localStorage?.setItem(shopAccessKey, "true");
+  } catch {
+    // The preview browser can block storage; the unlock still works for this visit.
+  }
+}
+
+function unlockShop() {
+  if (!shopGate || !shopFull) return;
+  shopGate.hidden = true;
+  shopFull.hidden = false;
+  document.body.classList.remove("shop-locked");
+  shopFull.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+if (shopGate && shopFull) {
+  if (getShopUnlocked()) {
+    unlockShop();
+  }
+
+  shopPasswordForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(shopPasswordForm);
+    const password = String(formData.get("password") || "").trim();
+
+    if (password === "silbarmola") {
+      rememberShopUnlock();
+      unlockShop();
+      return;
+    }
+
+    if (shopPasswordError) shopPasswordError.hidden = false;
+    shopPasswordForm.querySelector("input")?.select();
+  });
+}
+
 const productForm = document.querySelector("[data-product-form]");
 const selectionSummary = document.querySelector("[data-selection-summary]");
 

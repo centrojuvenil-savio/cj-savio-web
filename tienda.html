@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body class="shop-page shop-locked">
     <header class="site-header" data-header>
       <a class="brand" href="index.html#inicio" aria-label="Centro Juvenil Savio">
         <img src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
@@ -36,7 +36,42 @@
     </header>
 
     <main>
-      <section class="shop-hero">
+      <section class="shop-gate" data-shop-gate>
+        <img class="construction-logo construction-enter" src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
+        <div class="shop-gate-panel">
+          <div class="shop-gate-copy construction-enter">
+            <p class="section-kicker">Tienda online</p>
+            <h1>Don Bosco está preparando el escaparate.</h1>
+            <p>
+              Muy pronto tendremos lista la tienda del Centro Juvenil Savio. Si tienes la clave, puedes entrar a ver
+              el diseño completo.
+            </p>
+            <form class="shop-password" data-shop-password>
+              <label for="shop-password">Contraseña</label>
+              <div class="shop-password-row">
+                <input
+                  id="shop-password"
+                  name="password"
+                  type="password"
+                  autocomplete="current-password"
+                  placeholder="Escribe la clave"
+                />
+                <button class="button primary" type="submit" data-label="Entrar">Entrar</button>
+              </div>
+              <p class="shop-password-error" data-shop-error hidden>Clave incorrecta. Prueba otra vez.</p>
+            </form>
+          </div>
+          <div class="construction-art-wrap construction-enter">
+            <img
+              class="construction-art"
+              src="assets/construccion-ilustracion.png"
+              alt="Ilustración de la tienda en preparación"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="shop-hero" data-shop-full hidden>
         <div class="shop-content">
           <p class="section-kicker reveal">Tienda online</p>
           <h1 class="reveal pop">Tienda online.</h1>
@@ -83,6 +118,6 @@
       <p>Centro Juvenil Savio © 2026</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=shop-gate-3"></script>
   </body>
 </html>
