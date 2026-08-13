@@ -40,31 +40,19 @@ window.addEventListener("scroll", updateHeader, { passive: true });
 
 const seasonAlert = document.querySelector("[data-season-alert]");
 const seasonAlertClose = document.querySelector("[data-season-alert-close]");
-const seasonAlertKey = "cj-savio-season-alert-closed-v2";
-
-function isSeasonAlertClosed() {
-  try {
-    return window.sessionStorage?.getItem(seasonAlertKey) === "true";
-  } catch {
-    return false;
-  }
-}
+let seasonAlertClosed = false;
 
 function closeSeasonAlert() {
   if (!seasonAlert) return;
+  seasonAlertClosed = true;
   seasonAlert.classList.remove("is-visible");
-  try {
-    window.sessionStorage?.setItem(seasonAlertKey, "true");
-  } catch {
-    // Some preview contexts block storage; closing still works for this page view.
-  }
   window.setTimeout(() => {
     seasonAlert.hidden = true;
   }, 260);
 }
 
 function updateSeasonAlert() {
-  if (!seasonAlert || isSeasonAlertClosed() || seasonAlert.classList.contains("is-visible")) return;
+  if (!seasonAlert || seasonAlertClosed || seasonAlert.classList.contains("is-visible")) return;
   if (window.scrollY < 140) return;
   seasonAlert.hidden = false;
   window.requestAnimationFrame(() => seasonAlert.classList.add("is-visible"));
