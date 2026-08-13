@@ -145,7 +145,8 @@ function updateSelectionSummary() {
   const formData = new FormData(productForm);
   const size = formData.get("size");
   const color = formData.get("color");
-  selectionSummary.textContent = `Camiseta Sabes Silbar · ${size} · ${color}`;
+  const productName = productForm.dataset.productName || "Producto Sabes Silbar";
+  selectionSummary.textContent = `${productName} · ${size} · ${color}`;
 }
 
 if (productForm) {

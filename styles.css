@@ -1114,9 +1114,9 @@ section[id] {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
-  width: min(1040px, 100%);
+  width: min(1180px, 100%);
   margin: 24px 0 36px;
   text-align: left;
 }
@@ -1137,11 +1137,16 @@ section[id] {
   transform: rotate(1deg);
 }
 
+.product-card:nth-child(3) {
+  transform: rotate(-0.6deg);
+}
+
 .product-image {
   min-height: 260px;
   display: grid;
   place-items: center;
   border-bottom: 4px solid var(--ink);
+  overflow: hidden;
 }
 
 .product-image-large {
@@ -1154,6 +1159,13 @@ section[id] {
   font-family: "Archivo Black", Impact, sans-serif;
   font-size: clamp(2rem, 4.8vw, 4.4rem);
   text-transform: uppercase;
+}
+
+.product-photo img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 38%;
 }
 
 .product-shirt {
@@ -1170,6 +1182,22 @@ section[id] {
     radial-gradient(circle at 50% 28%, var(--paper) 0 12%, transparent 13%),
     linear-gradient(var(--yellow) 0 0) center 60% / 52% 62% no-repeat,
     var(--sky);
+}
+
+.product-pack {
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(124, 58, 168, 0.92) 0 49%, transparent 50%) left / 50% 100% no-repeat,
+    linear-gradient(135deg, transparent 0 49%, rgba(47, 170, 101, 0.9) 50%) right / 50% 100% no-repeat,
+    var(--yellow);
+}
+
+.product-pack span {
+  max-width: 8ch;
+  color: var(--white);
+  font-size: clamp(1.7rem, 3.1vw, 3.25rem);
+  line-height: 0.95;
+  text-align: center;
 }
 
 .product-info {
@@ -1231,6 +1259,48 @@ section[id] {
 
 .product-preview {
   overflow: hidden;
+}
+
+.product-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  background: var(--ink);
+}
+
+.product-gallery img,
+.gallery-placeholder {
+  width: 100%;
+  height: clamp(280px, 31vw, 430px);
+  border: 0;
+  background-color: var(--paper);
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-gallery img:nth-child(odd),
+.gallery-placeholder:nth-child(odd) {
+  border-right: 4px solid var(--ink);
+}
+
+.product-gallery img:nth-child(-n + 2),
+.gallery-placeholder:nth-child(-n + 2) {
+  border-bottom: 4px solid var(--ink);
+}
+
+.gallery-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.gallery-placeholder span {
+  max-width: 8ch;
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 3.7rem);
+  line-height: 0.95;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .product-form {
@@ -1695,6 +1765,10 @@ legend {
 
 .product-card:nth-child(2).reveal.is-visible {
   transform: rotate(1deg) scale(1);
+}
+
+.product-card:nth-child(3).reveal.is-visible {
+  transform: rotate(-0.6deg) scale(1);
 }
 
 .quick-info .reveal:nth-child(2),
