@@ -125,7 +125,7 @@ img {
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 220px clamp(18px, 4vw, 56px) 70px;
+  padding: 170px clamp(18px, 4vw, 56px) 70px;
   text-align: center;
   z-index: 1;
 }
