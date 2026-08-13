@@ -391,7 +391,6 @@ section[id] {
   position: relative;
   z-index: 3;
   border-top: 4px solid var(--ink);
-  box-shadow: 0 -28px 70px rgba(17, 17, 27, 0.16);
   padding: clamp(70px, 10vw, 126px) clamp(18px, 5vw, 72px);
 }
 
@@ -564,7 +563,6 @@ section[id] {
   position: relative;
   z-index: 6;
   border-top: 4px solid var(--ink);
-  box-shadow: 0 -28px 70px rgba(17, 17, 27, 0.16);
   padding: clamp(70px, 10vw, 126px) clamp(18px, 5vw, 72px);
   background: var(--red);
 }
