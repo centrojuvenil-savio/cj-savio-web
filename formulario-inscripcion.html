@@ -1,0 +1,505 @@
+<!-- CJ SAVIO 2026/2027: asignacion automatica al responsable de cada curso y a su grupo correspondiente. No se fija un destinatario de avisos ni un responsable global; las notificaciones adicionales dependen de la configuracion de BosConecta. -->
+<!-- CJ SAVIO: FORMULARIO INSCRIPCION 2026/2027. SOLO CONTENIDO. Reemplazar el contenido INTERIOR de <form id="WebToLeadForm">.
+NO duplicar etiquetas <form> ni reemplazar el JavaScript nativo de Bosconecta, incluido submitForm(form).
+Los campos operativos proceden del formulario sencillo que ha funcionado. -->
+<style>
+:root{color-scheme:light}
+body{margin:0!important;padding:0!important;background:#f3f3f3!important;color:#23354a;font:15px/1.55 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}
+#savio-registro{--ink:#23354a;--border:#dde3eb;--muted:#5c6f82;--bluebox:#d9f0f6;--redbox:#f8d9db;--yellowbox:#f6e9b8;--greenbox:#dbeadf;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;max-width:1160px;margin:20px auto 40px;background:#fff;border:1px solid #e1e5ea;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,.04);overflow:hidden;color:var(--ink)}
+#savio-registro *{box-sizing:border-box}
+#savio-registro .topbar{display:grid;grid-template-columns:150px 1fr 150px;align-items:center;gap:18px;padding:18px 22px 8px;background:#fff}
+#savio-registro .brand{display:flex;align-items:center;justify-content:center;min-height:68px}
+#savio-registro .brand img{max-width:100%;max-height:88px;object-fit:contain;display:block}
+#savio-registro .brand.brand-cj img{max-height:120px}
+#savio-registro .topbar h1{margin:0;text-align:center;font-size:clamp(24px,3vw,36px);font-weight:850;letter-spacing:.02em;color:#1f2e40;text-transform:uppercase}
+#savio-registro .intro-text{padding:8px 36px 0;color:#3d5064;font-size:15px}
+#savio-registro .notice-stack{padding:18px 24px 6px;display:grid;gap:14px}
+#savio-registro .info-box{border-radius:8px;padding:16px 18px;border:1px solid var(--border)}
+#savio-registro .info-box p{margin:0;color:#35485c}
+#savio-registro .info-box strong{display:block;margin-bottom:4px;color:#25384c}
+#savio-registro .info-red{background:var(--redbox);border-color:#efc1c5}
+#savio-registro .info-yellow{background:var(--yellowbox);border-color:#ebdb97}
+#savio-registro .info-blue{background:var(--bluebox);border-color:#b7dce8}
+#savio-registro .info-green{background:var(--greenbox);border-color:#bfd5c5}
+#savio-registro .info-green p{margin:6px 0 9px}
+#savio-registro .info-green p:last-child{margin-bottom:0}
+#savio-registro .info-green ul{margin:5px 0 10px 20px;padding:0}
+#savio-registro .info-green li{margin:4px 0}
+#savio-registro .info-green a{color:#145a3a;text-decoration:underline;text-underline-offset:2px}
+#savio-registro .info-green a:hover{color:#0e402a}
+#savio-registro .guide{padding:8px 32px 0}
+#savio-registro .guide h3{margin:0 0 8px;font-size:20px;color:#203244}
+#savio-registro .guide ol{margin:0 0 6px 22px;padding:0;color:#33495e}
+#savio-registro .guide li{margin:4px 0}
+#savio-registro .section{margin:18px 24px;background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+#savio-registro .section-h{padding:16px 18px;display:flex;align-items:center;gap:14px;background:#f7f9fb;border-bottom:1px solid var(--border)}
+#savio-registro .number{display:grid;place-items:center;height:40px;width:40px;flex:0 0 40px;border-radius:10px;background:#e5eef5;color:#31506d;font-weight:900}
+#savio-registro h2{font-size:19px;margin:0;font-weight:850;color:#22374b;line-height:1.3}
+#savio-registro .section-h p{font-size:12.5px;color:#6b8095;margin:3px 0 0}
+#savio-registro .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 22px;padding:23px 23px 27px}
+#savio-registro .field{min-width:0;display:flex;flex-direction:column;gap:6px}
+#savio-registro .field.wide,#savio-registro .notice.wide,#savio-registro .consent{grid-column:1/-1}
+#savio-registro .field label,#savio-registro .consent label{font-size:13px;font-weight:750;color:#26415c;line-height:1.45}
+#savio-registro .field input:not([type=hidden]):not([type=checkbox]),#savio-registro .field textarea,#savio-registro .field select,#savio-registro .consent select{display:block!important;width:100%!important;max-width:none!important;border:1px solid #cbd9e6!important;border-radius:6px!important;background:#fff!important;color:#223d59!important;min-height:45px!important;padding:10px 12px!important;box-shadow:none!important;font-size:14px!important;line-height:1.4!important;font-family:inherit!important;outline:none!important}
+#savio-registro .field input:focus,#savio-registro .field select:focus,#savio-registro .field textarea:focus,#savio-registro .consent select:focus{border-color:#267bb2!important;box-shadow:0 0 0 3px #267bb222!important}
+#savio-registro .field textarea{min-height:85px!important;resize:vertical}
+#savio-registro .field input::placeholder,#savio-registro .field textarea::placeholder{color:#91a0af}
+#savio-registro .required{color:#bd3151;font-weight:800}
+#savio-registro .hint{font-size:11.5px;line-height:1.45;color:#6a8094;min-height:0}
+#savio-registro .hint:empty{display:none}
+#savio-registro .notice{background:#f3f7fc;border:1px solid #dde8f1;border-radius:8px;padding:12px 15px;color:#587084;font-size:13px}
+#savio-registro .consent{padding:16px;border:1px solid #dfe8f2;border-radius:8px;background:#fafcfe}
+#savio-registro .consent-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#savio-registro .consent label{font-weight:800}
+#savio-registro .consent p{font-size:12.5px;color:#637b91;margin:6px 0 11px}
+#savio-registro .consent select{max-width:320px!important}
+#savio-registro .pill{border-radius:99px;background:#e5f2fc;color:#315d7e;padding:3px 9px;font-size:10.5px;font-weight:800;white-space:nowrap}
+#savio-registro .feedback{display:none;margin:0 24px 6px;background:#ffeded;border:1px solid #e8b8b8;color:#8c303b;border-radius:8px;padding:13px 16px;font-size:14px}
+#savio-registro .feedback:not(:empty){display:block}
+#savio-registro .actions{padding:12px 25px 27px;text-align:center}
+#savio-registro .send-button{border:0;border-radius:8px;background:#1f5f8b;padding:14px 28px;min-width:min(100%,360px);font:800 16px/1.25 system-ui,sans-serif;color:#fff;cursor:pointer;box-shadow:0 7px 18px rgba(31,95,139,.18)}
+#savio-registro .send-button:hover{filter:brightness(1.03)}
+#savio-registro .send-button:disabled{opacity:.65;cursor:not-allowed;box-shadow:none}
+#savio-registro .actions p{font-size:12px;color:#71869a;margin:9px 0 0}
+#savio-registro .footer{padding:3px 15px 21px;text-align:center;color:#688197;font-size:12px}
+#savio-registro .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#savio-registro [hidden]{display:none!important}
+@media(max-width:860px){#savio-registro .topbar{grid-template-columns:1fr;gap:8px;padding:16px 14px 8px}#savio-registro .topbar h1{font-size:28px}#savio-registro .brand img{max-height:78px}#savio-registro .brand.brand-cj img{max-height:95px}#savio-registro .intro-text{padding:8px 18px 0}#savio-registro .notice-stack{padding:14px 12px 2px}#savio-registro .guide{padding:8px 16px 0}#savio-registro .section{margin:14px 10px}#savio-registro .section-h{padding:16px}#savio-registro .section-h h2{font-size:17px}#savio-registro .fields{grid-template-columns:minmax(0,1fr);padding:18px 15px;gap:15px}#savio-registro .consent-heading{flex-wrap:wrap}#savio-registro .feedback{margin:0 12px 7px}#savio-registro .send-button{width:100%}}
+@supports selector(:has(*)) {
+ #savio-registro #cj-school-other-wrap,
+ #savio-registro #cj-emergency-other-name-wrap,
+ #savio-registro #cj-emergency-other-doc-wrap,
+ #savio-registro #cj-emergency-other-phone-wrap {display:none!important;}
+ #savio-registro:has(#cj-school-choice option[value="otro"]:checked) #cj-school-other-wrap {display:block!important;}
+ #savio-registro:has(#cj-emergency-choice option[value="otro"]:checked) #cj-emergency-other-name-wrap,
+ #savio-registro:has(#cj-emergency-choice option[value="otro"]:checked) #cj-emergency-other-doc-wrap,
+ #savio-registro:has(#cj-emergency-choice option[value="otro"]:checked) #cj-emergency-other-phone-wrap {display:flex!important;}
+}
+
+#savio-registro .t1-credentials-note{background:#eaf5ff;border:1px solid #b6d9f1;color:#285472;border-radius:8px;padding:11px 13px;font-size:12.5px;line-height:1.5}
+#savio-registro .t1-credentials-note strong{font-weight:800}
+#savio-registro .image-consent-scope{margin:6px 0 13px 20px;padding:0;color:#4d6378;font-size:12.5px;line-height:1.55}
+#savio-registro .image-consent-scope li{margin:3px 0}
+#savio-registro .consent-combined-images select{width:100%;max-width:100%}
+
+/* Secciones y campos alternativos por edad; ocultación real también con CSS del editor. */
+#savio-registro #cj-adult-contact-section[hidden],
+#savio-registro #cj-adult-whatsapp-wrap[hidden],
+#savio-registro #cj-t1-section[hidden],
+#savio-registro #cj-t2-section[hidden],
+#savio-registro [data-cj-minor-only][hidden],
+#savio-registro [data-cj-t2-required][hidden]{display:none!important}
+
+/* Respaldo visual independiente del JavaScript y del formulario contenedor.
+   Compatible con Edge, Chrome, Safari y Firefox actuales. */
+@supports selector(:has(*)) {
+ #savio-registro:has(#Contacts___curso_escolar_c option[value="other"]:checked) #cj-t1-section,
+ #savio-registro:has(#Contacts___curso_escolar_c option[value="other"]:checked) #cj-t2-section {display:none!important;}
+ #savio-registro:has(#Contacts___curso_escolar_c option[value="other"]:checked) #cj-adult-contact-section {display:block!important;}
+ #savio-registro:not(:has(#Contacts___curso_escolar_c option[value="other"]:checked)) #cj-adult-contact-section {display:none!important;}
+}
+
+/* Alternancia de apartados para el editor de BosConecta: DIV como el selector
+   que ya funciona para introducir otro centro educativo. */
+#savio-registro[data-cj-contacto="animadores"] #cj-t1-section,
+#savio-registro[data-cj-contacto="animadores"] #cj-t2-section {display:none!important}
+#savio-registro[data-cj-contacto="animadores"] #cj-adult-contact-section {display:block!important}
+#savio-registro[data-cj-contacto="tutores"] #cj-adult-contact-section {display:none!important}
+#savio-registro[data-cj-contacto="tutores"] #cj-t1-section,
+#savio-registro[data-cj-contacto="tutores"] #cj-t2-section {display:block!important}
+
+/* Adaptación visual para la landing del Centro Juvenil Savio. */
+body{background:#fffdf2!important;color:#11111b!important}
+#WebToLeadForm{margin:0}
+#savio-registro{--ink:#11111b;--border:#11111b;--muted:#4b5563;--bluebox:#dff4ff;--redbox:#ffe0dc;--yellowbox:#fff7a8;--greenbox:#e2f4df;max-width:1160px;margin:0 auto;background:transparent;border:0;border-radius:0;box-shadow:none;color:#11111b}
+#savio-registro .topbar{display:none}
+#savio-registro .intro-text{padding:4px 24px 0;font-size:17px;font-weight:800;color:#11111b}
+#savio-registro .info-box,#savio-registro .notice,#savio-registro .consent{border:3px solid #11111b;border-radius:8px;color:#11111b}
+#savio-registro .info-box p,#savio-registro .info-box strong,#savio-registro .notice,#savio-registro .consent p{color:#11111b}
+#savio-registro .guide h3,#savio-registro .guide li{color:#11111b}
+#savio-registro .section{border:3px solid #11111b;border-radius:8px;box-shadow:7px 7px 0 #11111b}
+#savio-registro .section-h{background:#68c1ec;border-bottom:3px solid #11111b}
+#savio-registro .number{border:3px solid #11111b;border-radius:6px;background:#e6db3c;color:#11111b}
+#savio-registro h2,#savio-registro .section-h p,#savio-registro .field label,#savio-registro .consent label{color:#11111b}
+#savio-registro .field input:not([type=hidden]):not([type=checkbox]),#savio-registro .field textarea,#savio-registro .field select,#savio-registro .consent select{border:2px solid #11111b!important;border-radius:6px!important;color:#11111b!important}
+#savio-registro .field input:focus,#savio-registro .field select:focus,#savio-registro .field textarea:focus,#savio-registro .consent select:focus{border-color:#00469f!important;box-shadow:0 0 0 4px rgba(104,193,236,.45)!important}
+#savio-registro .required{color:#f8493a}
+#savio-registro .send-button{border:3px solid #11111b;border-radius:6px;background:#11111b;box-shadow:6px 6px 0 #68c1ec;color:#e6db3c;font-weight:900;text-transform:uppercase}
+#savio-registro .send-button:hover{filter:none;transform:translate(3px,3px);box-shadow:3px 3px 0 #68c1ec}
+#savio-registro .footer{display:none}
+</style>
+<form id="WebToLeadForm" novalidate><div id="savio-registro"><div class="intro-text">Este formulario permite registrar los datos de la persona participante en Bosconecta y vincularla al Centro Juvenil Savio.</div><div class="notice-stack"><div class="info-box info-red"><p><strong>Si la persona participante ya estaba inscrita en el Centro Juvenil, no debe volver a rellenar este formulario.</strong> En caso de duda, contacta antes con el Centro Juvenil.</p></div><div class="info-box info-yellow"><p><strong>Importante sobre el número de identificación.</strong> Si la persona menor de edad no dispone de DNI, NIE o pasaporte, selecciona «Otros». No introduzcas el número de documento del padre, madre o tutor en los datos del participante.</p></div><div class="info-box info-blue"><p><strong>La validación y el envío de credenciales no son automáticos.</strong> Una vez enviado el formulario, el Centro Juvenil revisará y validará los datos introducidos.</p></div><div class="info-box info-green" role="note"><strong>Acceso al Área Privada de Bosconecta</strong><p>Una vez que el Centro Juvenil haya revisado y validado la inscripción, recibirás las credenciales de acceso al Área Privada.</p><p>Para acceder, <b>descarga la aplicación de Bosconecta</b> en tu móvil e inicia sesión con las credenciales que te faciliten. Recomendamos la aplicación móvil porque está mejor adaptada al uso desde el teléfono.</p><p class="area-links-intro"><b>Descargar la aplicación:</b></p><ul><li><a href="https://play.google.com/store/apps/details?id=com.dosatic.crm.app_bosconecta_flutter.bcu" rel="noopener noreferrer" target="_blank">Bosconecta para Android (Google Play)</a></li><li><a href="https://apps.apple.com/es/app/bosconecta/id6739498151?l=en-GB" rel="noopener noreferrer" target="_blank">Bosconecta para iPhone y iPad (App Store)</a></li></ul><p>También puedes entrar desde la <a href="https://confedonbosco.org/areaprivada/" rel="noopener noreferrer" target="_blank">versión web del Área Privada de Bosconecta</a>.</p></div></div><div class="guide"><h3>Indicaciones:</h3><ol><li>Deben cumplimentarse todos los campos marcados como obligatorios con un asterisco (*).</li><li>Debe presentarse un formulario por cada participante.</li><li>Si la persona participante es menor de edad, el formulario deberá ser cumplimentado por su madre, padre o persona tutora legal.</li><li>Tras el envío del formulario, el Centro Juvenil revisará la información y validará los datos.</li><li>Las comunicaciones principales se enviarán al correo del primer tutor si la persona es menor; si tiene 18 años o más, a su propio correo.</li></ol></div><input id="event_id" name="event_id" type="hidden" value="00000d42-edce-5627-c805-6ac783043a06"/>
+<input id="Contacts___bosco_evento_origen_c" name="Contacts___bosco_evento_origen_c" type="hidden" value=""/>
+<input id="redirect_url" name="redirect_url" type="hidden" value="https://www.cjsavio.es/"/>
+<input id="redirect_ko_url" name="redirect_ko_url" type="hidden" value="https://www.cjsavio.es/"/>
+<input id="validate_identification_number" name="validate_identification_number" type="hidden" value="1"/>
+<input id="assigned_user_id" name="assigned_user_id" type="hidden" value=""/>
+<!-- Inicio de curso 2026/27: Atocha, Cruces y Oldarra incluyen este indicador en sus altas.
+     Es un dato del PARTICIPANTE, no del tutor; no sustituye la validación AP.
+     El CRM debe confirmar si procesa este campo en el punto de entrada del formulario. -->
+<input id="Contacts___bosco_promocionado_curso_actual_c" name="Contacts___bosco_promocionado_curso_actual_c" type="hidden" value="1"/>
+<input id="req_id" name="req_id" type="hidden" value="Contacts___first_name;Contacts___last_name;Contacts___email1;Contacts___bosco_centrojuvenil_c;Contacts___stic_identification_type_c;Contacts___stic_identification_number_c;Contacts___bosco_grupos_c;"/>
+<input id="bool_id" name="bool_id" type="hidden" value=""/>
+<input id="Contacts___description" name="Contacts___description" type="hidden" value=""/><input id="webFormClass" name="webFormClass" type="hidden" value="EventInscription"/>
+<input id="stic_Payment_Commitments___payment_type" name="stic_Payment_Commitments___payment_type" type="hidden" value=""/>
+<input id="stic_Payment_Commitments___periodicity" name="stic_Payment_Commitments___periodicity" type="hidden" value="punctual"/>
+<input id="language" name="language" type="hidden" value="es_ES"/>
+<input id="defParams" name="defParams" type="hidden" value="%7B%22include_payment_commitment%22%3A0%2C%22include_organization%22%3A0%2C%22account_code_mandatory%22%3A0%2C%22include_registration%22%3A0%2C%22account_name_optional%22%3A0%2C%22email_template_id%22%3A%2275d353ff-fcf2-7276-79fa-668bbb2242a8%22%2C%22include_recaptcha%22%3A0%2C%22recaptcha_configKeys%22%3A%5B%22%28General%29%22%5D%2C%22recaptcha_selected%22%3A%22%22%7D"/>
+<input id="timeZone" name="timeZone" type="hidden" value=""/><div class="section"><div class="section-h"><span class="number">01</span><div><h2>Datos del participante</h2><p>Identificación, estudios y domicilio</p></div></div><div class="fields"><div class="field"><label for="Contacts___first_name" id="lbl_Contacts___first_name">Nombre del participante <span class="required">*</span></label><input autocomplete="given-name" id="Contacts___first_name" maxlength="100" name="Contacts___first_name" placeholder="Nombre" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___last_name" id="lbl_Contacts___last_name">Apellidos del participante <span class="required">*</span></label><input autocomplete="family-name" id="Contacts___last_name" maxlength="150" name="Contacts___last_name" placeholder="Apellidos" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___birthdate" id="lbl_Contacts___birthdate">Fecha de nacimiento <span class="required">*</span></label><input autocomplete="bday" id="Contacts___birthdate" name="Contacts___birthdate" placeholder="" required="" type="date"/><small class="hint"></small></div><div class="field"><label for="Contacts___bosco_paisprocedencia_c" id="lbl_Contacts___bosco_paisprocedencia_c">País de nacimiento <span class="required">*</span></label><select id="Contacts___bosco_paisprocedencia_c" name="Contacts___bosco_paisprocedencia_c" required=""><option selected="" value="SPAIN">ESPAÑA</option><option value="AFGHANISTAN">AFGANISTÁN</option><option value="ALBANIA">ALBANIA</option><option value="GERMANY">ALEMANIA</option><option value="ALGERIA">ARGELIA</option><option value="ANDORRA">ANDORRA</option><option value="ANGOLA">ANGOLA</option><option value="ANTIGUA">ANTIGUA Y BARBUDA</option><option value="SAUDI ARABIA">ARABIA SAUDITA</option><option value="ARGENTINA">ARGENTINA</option><option value="ARMENIA">ARMENIA</option><option value="ARUBA">ARUBA</option><option value="AUSTRALIA">AUSTRALIA</option><option value="AUSTRIA">AUSTRIA</option><option value="AZERBAIJAN">AZERBAIYAN</option><option value="BAHAMAS">BAHAMAS</option><option value="BAHRAIN">BAHREIN</option><option value="BANGLADESH">BANGLADESH</option><option value="BARBADOS">BARBADOS</option><option value="BELARUS">BIELORRUSIA</option><option value="BELGIUM">BELGICA</option><option value="BELIZE">BELICE</option><option value="BENIN">BENIN</option><option value="BERMUDA">BERMUDAS</option><option value="BHUTAN">BUTAN</option><option value="BOLIVIA">BOLIVIA</option><option value="BOSNIA">BOSNIA</option><option value="BOTSWANA">BOTSWANA</option><option value="BRAZIL">BRASIL</option><option value="BRUNEI">BRUNEI</option><option value="BULGARIA">BULGARIA</option><option value="BURKINA FASO">BURKINA FASO</option><option value="BURUNDI">BURUNDI</option><option value="CAMBODIA">CAMBOYA</option><option value="CAMEROON">CAMERUN</option><option value="CANADA">CANADA</option><option value="CAPE VERDI ISLANDS">CABO VERDE</option><option value="CHAD">CHAD</option><option value="CHILE">CHILE</option><option value="CHINA">CHINA</option><option value="COLOMBIA">COLOMBIA</option><option value="CONGO">CONGO</option><option value="KOREA">COREA DEL NORTE</option><option value="KOREA, SOUTH">COREA DEL SUR</option><option value="IVORY COAST">COSTA DE MARFIL</option><option value="COSTA RICA">COSTA RICA</option><option value="CROATIA">CROACIA</option><option value="CUBA">CUBA</option><option value="CURACAO">CURACAO</option><option value="CYPRUS">CHIPRE</option><option value="CZECH REPUBLIC">REPÚBLICA CHECA</option><option value="DENMARK">DINAMARCA</option><option value="DOMINICA">DOMINICA</option><option value="DOMINICAN REPUBLIC">REPÚBLICA DOMINICANA</option><option value="ECUADOR">ECUADOR</option><option value="EGYPT">EGIPTO</option><option value="EL SALVADOR">EL SALVADOR</option><option value="UNITED ARAB EMIRATES">EMIRATOS ÁRABES UNIDOS</option><option value="SLOVAKIA">ESLOVAQUIA</option><option value="SLOVENIA">ESLOVENIA</option><option value="ESTONIA">ESTONIA</option><option value="ETHIOPIA">ETIOPÍA</option><option value="USA">EE.UU.</option><option value="FIJI">FIJI</option><option value="PHILIPPINES">FILIPINAS</option><option value="FINLAND">FINLANDIA</option><option value="FRANCE">FRANCIA</option><option value="FRENCH GUIANA">GUAYANA FRANCESA</option><option value="FRENCH POLYNESIA">POLINESIA FRANCESA</option><option value="GABON">GABÓN</option><option value="GAMBIA">GAMBIA</option><option value="GEORGIA">GEORGIA</option><option value="GHANA">GHANA</option><option value="GIBRALTAR">GIBRALTAR</option><option value="GREECE">GRECIA</option><option value="GREENLAND">GROENLANDIA</option><option value="GUAM">GUAM</option><option value="GUATEMALA">GUATEMALA</option><option value="GUINEA">GUINEA</option><option value="EQUATORIAL GUINEA">GUINEA ECUATORIAL</option><option value="GUYANA">GUYANA</option><option value="HAITI">HAITI</option><option value="HONDURAS">HONDURAS</option><option value="HUNGARY">HUNGRÍA</option><option value="ICELAND">ISLANDIA</option><option value="COOK ISLANDS">ISLAS COOK</option><option value="FAEROE ISLANDS">ISLAS FEROE</option><option value="INDIA">INDIA</option><option value="INDONESIA">INDONESIA</option><option value="IRAN">IRAN</option><option value="IRAQ">IRAQ</option><option value="IRELAND">IRLANDA</option><option value="ISRAEL">ISRAEL</option><option value="ITALY">ITALIA</option><option value="JAMAICA">JAMAICA</option><option value="JAPAN">JAPON</option><option value="JORDAN">JORDANIA</option><option value="KAZAKHSTAN">KAZAJSTÁN</option><option value="KENYA">KENIA</option><option value="KUWAIT">KUWAIT</option><option value="KYRGYZSTAN">KIRGUISTÁN</option><option value="LAOS">LAOS</option><option value="LATVIA">LETONIA</option><option value="LEBANON">LÍBANO</option><option value="LESOTHO">LESOTHO</option><option value="LIBYA">LIBIA</option><option value="LIECHTENSTEIN">LIECHTENSTEIN</option><option value="LITHUANIA">LITUANIA</option><option value="LUXEMBOURG">LUXEMBURGO</option><option value="MACAO">MACAO</option><option value="MACEDONIA">MACEDONIA</option><option value="MADAGASCAR">MADAGASCAR</option><option value="MALAWI">MALAWI</option><option value="MALAYSIA">MALAYSIA</option><option value="MALDIVES">MALDIVES</option><option value="MALI">MALI</option><option value="MALTA">MALTA</option><option value="MARTINIQUE">MARTINICA</option><option value="MAURITANIA">MAURITANIA</option><option value="MAURITIUS">MAURICIO</option><option value="MEXICO">MÉXICO</option><option value="MOLDOVIA">MOLDOVIA</option><option value="MONACO">MONACO</option><option value="MONGOLIA">MONGOLIA</option><option value="MOROCCO">MARRUECOS</option><option value="MOZAMBIQUE">MOZAMBIQUE</option><option value="MYANAMAR">MYANAMAR</option><option value="NAMIBIA">NAMIBIA</option><option value="NEPAL">NEPAL</option><option value="NETHERLANDS">PAÍSES BAJOS</option><option value="NETHERLANDS ANTILLES">ANTILLAS HOLANDESAS</option><option value="NEW ZEALAND">NUEVA ZELANDA</option><option value="NICARAGUA">NICARAGUA</option><option value="NIGER">NIGER</option><option value="NIGERIA">NIGERIA</option><option value="NORWAY">NORUEGA</option><option value="OMAN">OMAN</option><option value="PAKISTAN">PAKISTAN</option><option value="PANAMA">PANAMA</option><option value="PAPUA NEW GUINEA">PAPUA NUEVA GUINEA</option><option value="PARAGUAY">PARAGUAY</option><option value="PERU">PERU</option><option value="POLAND">POLONIA</option><option value="PORTUGAL">PORTUGAL</option><option value="PORTUGUESE TIMOR">TIMOR ORIENTAL</option><option value="PUERTO RICO">PUERTO RICO</option><option value="QATAR">QATAR</option><option value="REPUBLIC OF BELARUS">REPÚBLICA DE BIELORRUSIA</option><option value="REPUBLIC OF SOUTH AFRICA">REPÚBLICA DE SUDÁFRICA</option><option value="ROMANIA">RUMANIA</option><option value="RUSSIA">RUSIA</option><option value="RWANDA">RUANDA</option><option value="AMERICAN SAMOA">SAMOA</option><option value="SAN MARINO">SAN MARINO</option><option value="SENEGAL">SENEGAL</option><option value="SERBIA">SERBIA</option><option value="SEYCHELLES">SEYCHELLES</option><option value="SIERRA LEONE">SIERRA LEONA</option><option value="SINGAPORE">SINGAPUR</option><option value="SOMALILIAND">SOMALILIAND</option><option value="SOUTH AFRICA">SUDÁFRICA</option><option value="SOUTH YEMEN">YEMEN DEL SUR</option><option value="WESTERN SAHARA">SAHARA OCCIDENTAL</option><option value="SRI LANKA">SRI LANKA</option><option value="ST. KITTS AND NEVIS">ST. KITTS AND NEVIS</option><option value="ST. LUCIA">ST. LUCIA</option><option value="SUDAN">SUDAN</option><option value="SURINAM">SURINAM</option><option value="SWAZILAND">SWAZILAND</option><option value="SWEDEN">SUECIA</option><option value="SWITZERLAND">SUIZA</option><option value="SYRIA">SIRIA</option><option value="TAIWAN">TAIWAN</option><option value="TAJIKISTAN">TAJIKISTAN</option><option value="TANZANIA">TANZANIA</option><option value="THAILAND">TAILANDIA</option><option value="TONGA">TONGA</option><option value="TRINIDAD">TRINIDAD Y TOBAGO</option><option value="TUNISIA">TUNEZ</option><option value="TURKEY">TURQUIA</option><option value="UGANDA">UGANDA</option><option value="UKRAINE">UCRANIA</option><option value="UNITED KINGDOM">REINO UNIDO</option><option value="URUGUAY">URUGUAY</option><option value="UZBEKISTAN">UZBEKISTÁN</option><option value="VANUATU">VANUATU</option><option value="VATICAN CITY">CIUDAD DEL VATICANO</option><option value="VENEZUELA">VENEZUELA</option><option value="VIETNAM">VIETNAM</option><option value="YEMEN">YEMEN</option><option value="DJIBOUTI">YIBUTI</option><option value="ZAIRE">ZAIRE</option><option value="ZAMBIA">ZAMBIA</option><option value="ZIMBABWE">ZIMBABWE</option></select><small class="hint">Selecciona el país en el que nació el participante.</small></div><div class="field"><label for="Contacts___curso_escolar_c" id="lbl_Contacts___curso_escolar_c">Curso escolar <span class="required">*</span></label><select id="Contacts___curso_escolar_c" name="Contacts___curso_escolar_c" required=""><option value="">Selecciona una opción</option><option value="priprim">1° PRIMARIA - PRECHIQUI</option><option value="segprim">2° PRIMARIA - PRECHIQUI</option><option value="terprim">3° PRIMARIA - CHIQUI</option><option value="cuarprim">4° PRIMARIA - CHIQUI</option><option value="quinprim">5° PRIMARIA - CHIQUI</option><option value="sextprim">6° PRIMARIA - CHIQUI</option><option value="primeso">1° ESO - PREAS</option><option value="segeso">2° ESO - PREAS</option><option value="tereso">3° ESO - JÓVENES</option><option value="cuareso">4° ESO - JÓVENES</option><option value="primbach">1° BACHILLERATO - JÓVENES</option><option value="segbach">2° BACHILLERATO - JÓVENES</option><option value="univ">1° UNIVERSIDAD - JÓVENES</option><option value="other">ANIMADORES / VOLUNTARIADO</option></select><small class="hint">La sección y el responsable de curso se asignan automáticamente según esta elección.</small></div><!-- Sección asignada internamente a partir del curso escolar; sin segunda pregunta. -->
+<input type="hidden" id="Contacts___bosco_grupos_c" name="Contacts___bosco_grupos_c" value=""/><div class="field"><label for="Contacts___stic_gender_c" id="lbl_Contacts___stic_gender_c">Sexo <span class="required">*</span></label><select id="Contacts___stic_gender_c" name="Contacts___stic_gender_c" required=""><option value="">Selecciona una opción</option><option value="male">Hombre</option><option value="female">Mujer</option><option value="other">Otros</option></select></div><div class="field"><label for="Contacts___tallas_c" id="lbl_Contacts___tallas_c">Talla de camiseta <span class="required">*</span></label><select id="Contacts___tallas_c" name="Contacts___tallas_c" required=""><option value="">Selecciona una opción</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="12">12</option><option value="14">14</option><option value="XS">XS</option><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option><option value="XXXL">XXXL</option></select></div><div class="field"><label for="Contacts___stic_identification_type_c" id="lbl_Contacts___stic_identification_type_c">Tipo de identificación del participante <span class="required">*</span></label><select id="Contacts___stic_identification_type_c" name="Contacts___stic_identification_type_c" required=""><option value="">Selecciona una opción</option><option value="nie">NIE</option><option value="nif">NIF</option><option value="passport">Pasaporte</option><option value="other">Otros</option></select></div><div class="field" id="cj-participant-id-wrap"><label for="Contacts___stic_identification_number_c" id="lbl_Contacts___stic_identification_number_c">Número de identificación del participante <span class="required">*</span></label><input id="Contacts___stic_identification_number_c" maxlength="25" name="Contacts___stic_identification_number_c" placeholder="DNI, NIE o pasaporte" required="" type="text"/></div><div class="field"><label for="cj-school-choice">Centro educativo <span class="required">*</span></label><select id="cj-school-choice" required=""><option value="savio">Santo Domingo Savio</option><option value="otro">Otro centro educativo</option></select><div id="cj-school-other-wrap"><label class="sv-extra-label" for="cj-school-other">Escribe el nombre del otro centro educativo <span class="required">*</span></label><input id="cj-school-other" maxlength="240" placeholder="Escribe el nombre del centro" type="text"/></div><small class="hint">Selecciona el colegio o introduce otro.</small></div><input id="Contacts___informacion_adicional_c" name="Contacts___informacion_adicional_c" type="hidden" value="Santo Domingo Savio"/><input id="Contacts___bosco_centrojuvenil_c" name="Contacts___bosco_centrojuvenil_c" type="hidden" value="savio"/><input id="Contacts___bosco_casa_origen_c" name="Contacts___bosco_casa_origen_c" type="hidden" value="madridsavio"/><div class="field"><label for="Contacts___bosco_tipovia_c" id="lbl_Contacts___bosco_tipovia_c">Tipo de vía <span class="required">*</span></label><select id="Contacts___bosco_tipovia_c" name="Contacts___bosco_tipovia_c" required=""><option value="">Selecciona tipo de vía</option><option selected="" value="1">Calle</option><option value="12">Pasaje</option><option value="13">Paseo</option><option value="14">Plaza</option><option value="2">Avenida</option><option value="5">Camino</option><option value="6">Carretera</option><option value="OTROS">Otros</option></select></div><div class="field"><label for="Contacts___primary_address_street" id="lbl_Contacts___primary_address_street">Dirección (nombre de vía, número, piso y puerta) <span class="required">*</span></label><input autocomplete="street-address" id="Contacts___primary_address_street" maxlength="240" name="Contacts___primary_address_street" placeholder="Ej.: Los Robles, 15, 2.º B" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___primary_address_city" id="lbl_Contacts___primary_address_city">Población <span class="required">*</span></label><input autocomplete="address-level2" id="Contacts___primary_address_city" maxlength="100" name="Contacts___primary_address_city" placeholder="Madrid" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___primary_address_state" id="lbl_Contacts___primary_address_state">Provincia <span class="required">*</span></label><select id="Contacts___primary_address_state" name="Contacts___primary_address_state" required=""><option value="">Selecciona una opción</option><option value="02">Albacete</option><option value="03">Alicante/Alacant</option><option value="04">Almería</option><option value="01">Araba/Álava</option><option value="33">Asturias</option><option value="05">Ávila</option><option value="06">Badajoz</option><option value="07">Balears, Illes</option><option value="08">Barcelona</option><option value="48">Bizkaia</option><option value="09">Burgos</option><option value="10">Cáceres</option><option value="11">Cádiz</option><option value="39">Cantabria</option><option value="12">Castellón/Castelló</option><option value="51">Ceuta</option><option value="13">Ciudad Real</option><option value="14">Córdoba</option><option value="15">Coruña, A</option><option value="16">Cuenca</option><option value="20">Gipuzkoa</option><option value="17">Girona</option><option value="18">Granada</option><option value="19">Guadalajara</option><option value="21">Huelva</option><option value="22">Huesca</option><option value="23">Jaén</option><option value="24">León</option><option value="25">Lleida</option><option value="27">Lugo</option><option selected="" value="28">Madrid</option><option value="29">Málaga</option><option value="52">Melilla</option><option value="30">Murcia</option><option value="31">Navarra</option><option value="32">Ourense</option><option value="34">Palencia</option><option value="35">Palmas, Las</option><option value="36">Pontevedra</option><option value="26">Rioja, La</option><option value="37">Salamanca</option><option value="38">Santa Cruz de Tenerife</option><option value="40">Segovia</option><option value="41">Sevilla</option><option value="42">Soria</option><option value="43">Tarragona</option><option value="44">Teruel</option><option value="45">Toledo</option><option value="46">Valencia/València</option><option value="47">Valladolid</option><option value="49">Zamora</option><option value="50">Zaragoza</option><option value="99">No residentes</option></select></div><div class="field"><label for="Contacts___primary_address_postalcode" id="lbl_Contacts___primary_address_postalcode">Código postal <span class="required">*</span></label><input autocomplete="postal-code" id="Contacts___primary_address_postalcode" inputmode="numeric" maxlength="5" name="Contacts___primary_address_postalcode" pattern="[0-9]{5}" placeholder="28000" required="" type="text"/><small class="hint">Cinco cifras si se cumplimenta.</small></div></div></div><div class="section" hidden="" style="display:none!important" id="cj-adult-contact-section">
+<div class="section-h"><span class="number">02</span><div>
+<h2>Datos de contacto del participante: Animadores / Voluntariado</h2>
+<p>Este apartado aparece únicamente al elegir Animadores / Voluntariado como curso escolar.</p>
+</div></div>
+<div class="fields">
+<div class="notice wide">Introduce tu <strong>propio correo electrónico y teléfono móvil</strong>. La validación del Área Privada y, cuando corresponda, las credenciales de acceso se gestionarán con el correo que indiques aquí.</div>
+<div class="field"><label for="cj-adult-mobile">Tu teléfono móvil <span class="required">*</span></label>
+<input autocomplete="tel" id="cj-adult-mobile" inputmode="tel" maxlength="25" placeholder="Ej.: 600 000 000" required="" type="tel"/>
+<small class="hint">Móvil español de 9 cifras, comenzando por 6 o 7. Puedes escribir espacios o +34.</small>
+</div>
+<div class="field"><label for="cj-adult-email">Tu correo electrónico <span class="required">*</span></label>
+<input autocomplete="email" id="cj-adult-email" maxlength="240" placeholder="correo@ejemplo.es" required="" type="email"/>
+<small class="hint">Se utilizará como correo principal del participante y para el Área Privada de BosConecta.</small>
+</div>
+<div class="field"><label for="cj-adult-confirm-email">Repite tu correo electrónico <span class="required">*</span></label>
+<input autocomplete="off" id="cj-adult-confirm-email" placeholder="Repite el mismo correo" required="" type="email"/>
+</div>
+</div>
+</div><div class="section" id="cj-t1-section"><div class="section-h"><span class="number">02</span><div><h2>Primer tutor (T1)</h2><p>Persona principal de contacto y emergencia</p></div></div><div class="fields"><div class="field"><label for="Contacts___bosco_t1_nom_c" id="lbl_Contacts___bosco_t1_nom_c">T1 · Nombre <span class="required">*</span></label><input id="Contacts___bosco_t1_nom_c" maxlength="100" name="Contacts___bosco_t1_nom_c" placeholder="" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___bosco_t1_cognoms_c" id="lbl_Contacts___bosco_t1_cognoms_c">T1 · Apellidos <span class="required">*</span></label><input id="Contacts___bosco_t1_cognoms_c" maxlength="150" name="Contacts___bosco_t1_cognoms_c" placeholder="" required="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___bosco_t1_relacion_c" id="lbl_Contacts___bosco_t1_relacion_c">T1 · Relación <span class="required">*</span></label><select id="Contacts___bosco_t1_relacion_c" name="Contacts___bosco_t1_relacion_c" required=""><option value="">Selecciona una opción</option><option value="father">Padre</option><option value="mother">Madre</option><option value="legal">Tutor/a</option></select></div><div class="field"><label for="Contacts___bosco_t1_mobil_c" id="lbl_Contacts___bosco_t1_mobil_c">T1 · Teléfono móvil <span class="required">*</span></label><input autocomplete="tel" id="Contacts___bosco_t1_mobil_c" inputmode="tel" maxlength="25" name="Contacts___bosco_t1_mobil_c" placeholder="Ej.: 600 000 000" required="" type="tel"/><small class="hint">Móvil español de 9 cifras (6 o 7 al inicio). Se admiten espacios o +34.</small></div><div class="field"><label for="Contacts___email1" id="lbl_Contacts___email1">Correo electrónico del primer tutor <span class="required">*</span></label><input autocomplete="email" id="Contacts___email1" inputmode="email" maxlength="240" name="Contacts___email1" onchange="validateEmailAdd(this)" placeholder="correo@ejemplo.es" required="" type="email"/><div class="t1-credentials-note" role="note"><strong>Importante:</strong> a este correo electrónico se enviarán las credenciales de acceso al Área Privada de BosConecta, una vez revisada y validada la inscripción por el Centro Juvenil. Comprueba que está escrito correctamente.</div><small class="hint">Este correo también se guardará como correo principal de contacto del participante en BosConecta.</small></div><div class="field"><label for="cj-confirm-email">Repetir correo del primer tutor <span class="required">*</span></label><input autocomplete="off" id="cj-confirm-email" inputmode="email" placeholder="Repite el mismo correo" required="" type="email"/><small class="hint">Ambos correos deben coincidir.</small></div><div class="field"><label for="Contacts___bosco_t1_identification_type_c" id="lbl_Contacts___bosco_t1_identification_type_c">T1 · Tipo de identificación <span class="required">*</span></label><select id="Contacts___bosco_t1_identification_type_c" name="Contacts___bosco_t1_identification_type_c" required=""><option value="">Selecciona una opción</option><option value="nie">NIE</option><option value="nif">NIF</option><option value="passport">Pasaporte</option><option value="other">Otros</option></select></div><div class="field"><label for="Contacts___bosco_t1_num_ident_c" id="lbl_Contacts___bosco_t1_num_ident_c">T1 · Número de documento <span class="required">*</span></label><input id="Contacts___bosco_t1_num_ident_c" maxlength="25" name="Contacts___bosco_t1_num_ident_c" placeholder="" required="" type="text"/><small class="hint"></small></div><input id="Contacts___bosco_t1_correuelectronic_c" name="Contacts___bosco_t1_correuelectronic_c" type="hidden" value=""/><input id="Contacts___bosco_email_seguro_c" name="Contacts___bosco_email_seguro_c" type="hidden" value=""/><input id="Contacts___bosco_t1_casa_origen_c" name="Contacts___bosco_t1_casa_origen_c" type="hidden" value="madridsavio"/><input id="Contacts___bosco_t1_centrojuvenil_c" name="Contacts___bosco_t1_centrojuvenil_c" type="hidden" value="savio"/><input id="Contacts___phone_mobile" name="Contacts___phone_mobile" type="hidden" value=""/><input id="Contacts___phone_home" name="Contacts___phone_home" type="hidden" value=""/><input id="Contacts___bosco_t1_telefon_fixe_c" name="Contacts___bosco_t1_telefon_fixe_c" type="hidden" value=""/></div></div><div class="section" id="cj-t2-section"><div class="section-h"><span class="number">03</span><div><h2>Segundo tutor (T2)</h2><p>Opcional: otro responsable de contacto</p></div></div><div class="fields"><div class="notice wide">El segundo tutor es opcional. Si facilitas cualquiera de sus datos, tendrás que completar también nombre, apellidos, relación, móvil, correo y confirmación, tipo de identificación y documento.</div><div class="field"><label for="Contacts___bosco_t2_nom_c" id="lbl_Contacts___bosco_t2_nom_c">T2 · Nombre<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input id="Contacts___bosco_t2_nom_c" maxlength="100" name="Contacts___bosco_t2_nom_c" placeholder="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___bosco_t2_cognoms_c" id="lbl_Contacts___bosco_t2_cognoms_c">T2 · Apellidos<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input id="Contacts___bosco_t2_cognoms_c" maxlength="150" name="Contacts___bosco_t2_cognoms_c" placeholder="" type="text"/><small class="hint"></small></div><div class="field"><label for="Contacts___bosco_t2_relacion_c" id="lbl_Contacts___bosco_t2_relacion_c">T2 · Relación<span class="required" data-cj-t2-required="" hidden=""> *</span></label><select id="Contacts___bosco_t2_relacion_c" name="Contacts___bosco_t2_relacion_c"><option value="">Selecciona una opción</option><option value="father">Padre</option><option value="mother">Madre</option><option value="legal">Tutor/a</option></select></div><div class="field"><label for="Contacts___bosco_t2_mobil_c" id="lbl_Contacts___bosco_t2_mobil_c">T2 · Teléfono móvil<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input autocomplete="off" id="Contacts___bosco_t2_mobil_c" inputmode="tel" maxlength="25" name="Contacts___bosco_t2_mobil_c" placeholder="Ej.: 600 000 000" type="tel"/><small class="hint">Móvil español de 9 cifras (6 o 7 al inicio). Se admiten espacios o +34.</small></div><div class="field"><label for="Contacts___bosco_t2_correuelectronic_c" id="lbl_Contacts___bosco_t2_correuelectronic_c">T2 · Correo electrónico<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input id="Contacts___bosco_t2_correuelectronic_c" inputmode="email" maxlength="240" name="Contacts___bosco_t2_correuelectronic_c" placeholder="" type="email"/><small class="hint"></small></div><div class="field"><label for="cj-confirm-email-t2">Repetir correo del segundo tutor<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input autocomplete="off" id="cj-confirm-email-t2" inputmode="email" placeholder="Repite el correo del segundo tutor" type="email"/><small class="hint">Si indicas correo del T2, ambos correos deben coincidir.</small></div><div class="field"><label for="Contacts___bosco_t2_identification_type_c" id="lbl_Contacts___bosco_t2_identification_type_c">T2 · Tipo de identificación<span class="required" data-cj-t2-required="" hidden=""> *</span></label><select id="Contacts___bosco_t2_identification_type_c" name="Contacts___bosco_t2_identification_type_c"><option value="">Selecciona una opción</option><option value="nie">NIE</option><option value="nif">NIF</option><option value="passport">Pasaporte</option><option value="other">Otros</option></select></div><div class="field"><label for="Contacts___bosco_t2_num_ident_c" id="lbl_Contacts___bosco_t2_num_ident_c">T2 · Número de documento<span class="required" data-cj-t2-required="" hidden=""> *</span></label><input id="Contacts___bosco_t2_num_ident_c" maxlength="25" name="Contacts___bosco_t2_num_ident_c" placeholder="" type="text"/><small class="hint"></small></div></div><input id="Contacts___bosco_t2_casa_origen_c" name="Contacts___bosco_t2_casa_origen_c" type="hidden" value=""/><input id="Contacts___bosco_t2_centrojuvenil_c" name="Contacts___bosco_t2_centrojuvenil_c" type="hidden" value=""/><input id="Contacts___bosco_t2_telefon_fixe_c" name="Contacts___bosco_t2_telefon_fixe_c" type="hidden" value=""/></div><div class="section" id="cj-emergency-section"><div class="section-h"><span class="number">04</span><div><h2 id="cj-emergency-title">Emergencias y recogida</h2><p id="cj-emergency-subtitle">Contacto de emergencia, recogida y autonomía</p></div></div><div class="fields"><div class="field wide"><label for="cj-emergency-choice">Persona de contacto en caso de emergencia</label><select id="cj-emergency-choice"><option value="t1">Con los datos indicados más arriba es suficiente</option><option value="otro">Indicar otra persona de contacto</option></select></div>
+<div class="field" id="cj-emergency-other-name-wrap"><label for="cj-emergency-other-name">Nombre y apellidos del contacto de emergencia <span class="required">*</span></label><input autocomplete="off" id="cj-emergency-other-name" maxlength="200" placeholder="Nombre y apellidos" type="text"/><small class="hint"></small></div>
+<div class="field" id="cj-emergency-other-doc-wrap"><label for="cj-emergency-other-doc">DNI, NIE o documento del contacto <span class="required">*</span></label><input autocomplete="off" id="cj-emergency-other-doc" maxlength="30" placeholder="Documento de identidad" type="text"/><small class="hint"></small></div>
+<div class="field" id="cj-emergency-other-phone-wrap"><label for="cj-emergency-other-phone">Teléfono del contacto de emergencia <span class="required">*</span></label><input autocomplete="off" id="cj-emergency-other-phone" inputmode="tel" maxlength="25" placeholder="Teléfono" type="tel"/><small class="hint"></small></div>
+<input id="Contacts___emergency_name_c" name="Contacts___emergency_name_c" type="hidden" value=""/>
+<input id="Contacts___emergency_doc_c" name="Contacts___emergency_doc_c" type="hidden" value=""/>
+<input id="Contacts___emergency_phone_c" name="Contacts___emergency_phone_c" type="hidden" value=""/><div class="field wide" data-cj-minor-only=""><label for="Contacts___bosco_autorizados_list_c" id="lbl_Contacts___bosco_autorizados_list_c">Personas adicionales autorizadas para recoger al menor</label><input id="Contacts___bosco_autorizados_list_c" maxlength="240" name="Contacts___bosco_autorizados_list_c" placeholder="Nombre, apellidos, relación y documento de identificación" type="text"/><small class="hint">Si no hay otras personas autorizadas, déjalo vacío.</small></div></div></div><div class="section"><div class="section-h"><span class="number">05</span><div><h2>Información sanitaria</h2><p>Incluye toda la información relevante para la atención del participante</p></div></div><div class="fields"><div class="notice wide">Incluye toda la información sanitaria que consideres relevante para que podamos atender adecuadamente a la persona participante durante las actividades: alergias, intolerancias, enfermedades o afecciones, tratamientos, medicación, necesidades de apoyo, recomendaciones y cualquier otra circunstancia importante.</div><div class="field wide"><label for="Contacts___bosco_descripcio_allergies_c" id="lbl_Contacts___bosco_descripcio_allergies_c">Alergias</label><textarea id="Contacts___bosco_descripcio_allergies_c" maxlength="240" name="Contacts___bosco_descripcio_allergies_c" placeholder="Describe toda la información que consideres relevante, si procede" rows="3"></textarea></div><div class="field wide"><label for="Contacts___bosco_descripcio_intoler_c" id="lbl_Contacts___bosco_descripcio_intoler_c">Intolerancias</label><textarea id="Contacts___bosco_descripcio_intoler_c" maxlength="240" name="Contacts___bosco_descripcio_intoler_c" placeholder="Describe toda la información que consideres relevante, si procede" rows="3"></textarea></div><div class="field wide"><label for="Contacts___bosco_descripcio_tratam_c" id="lbl_Contacts___bosco_descripcio_tratam_c">Tratamientos o medicación relevantes</label><textarea id="Contacts___bosco_descripcio_tratam_c" maxlength="240" name="Contacts___bosco_descripcio_tratam_c" placeholder="Describe toda la información que consideres relevante, si procede" rows="3"></textarea></div><div class="field wide"><label for="Contacts___bosco_descripcio_enfermed_c" id="lbl_Contacts___bosco_descripcio_enfermed_c">Enfermedades o afecciones relevantes</label><textarea id="Contacts___bosco_descripcio_enfermed_c" maxlength="240" name="Contacts___bosco_descripcio_enfermed_c" placeholder="Describe toda la información que consideres relevante, si procede" rows="3"></textarea></div></div></div><div class="actions"><button class="send-button" onclick="return cjSend(this.form)" type="button">Enviar inscripción</button><p>Revisa los datos antes de enviar.</p></div><div class="footer">Centro Juvenil Savio · Bosconecta</div></div>
+</form>
+<script type="text/javascript">
+(function(){
+'use strict';
+var frm=document.getElementById('WebToLeadForm');
+// Las interacciones de vista previa funcionan incluso si el fragmento se abre solo.
+// El envio real sigue exigiendo el formulario nativo de BosConecta.
+function e(id){return document.getElementById(id);}
+function value(id){var x=e(id);return x?x.value.trim():'';}
+function copy(from,to){if(e(from)&&e(to))e(to).value=value(from);}
+
+// Solo la opción ANIMADORES / VOLUNTARIADO activa el contacto personal
+// y oculta los tutores; la edad no cambia de forma automática este modo.
+function adultApplicant(){
+ return value('Contacts___curso_escolar_c')==='other';
+}
+
+var lastAdultState=null;
+var T1Fields=['Contacts___bosco_t1_nom_c','Contacts___bosco_t1_cognoms_c','Contacts___bosco_t1_relacion_c',
+ 'Contacts___bosco_t1_mobil_c','Contacts___bosco_t1_identification_type_c','Contacts___bosco_t1_num_ident_c'];
+var T2Fields=['Contacts___bosco_t2_nom_c','Contacts___bosco_t2_cognoms_c','Contacts___bosco_t2_relacion_c',
+ 'Contacts___bosco_t2_mobil_c','Contacts___bosco_t2_correuelectronic_c','cj-confirm-email-t2',
+ 'Contacts___bosco_t2_identification_type_c','Contacts___bosco_t2_num_ident_c'];
+var T2CRM=T2Fields.filter(function(id){return id!=='cj-confirm-email-t2';});
+function setFieldState(id,disable,required){var x=e(id);if(!x)return;x.disabled=!!disable;x.required=!!required;if(disable)x.setCustomValidity('');}
+function applyAgeMode(){
+ var adult=adultApplicant();
+ if(lastAdultState!==adult){
+   if(adult){
+     // Los animadores se inscriben con sus propios datos; no crear tutores ficticios.
+     document.querySelectorAll('#savio-registro [name^="Contacts___bosco_t1_"],#savio-registro [name^="Contacts___bosco_t2_"]').forEach(function(x){
+       if(x.type==='checkbox')x.checked=false;else x.value='';
+     });
+     if(e('cj-confirm-email'))e('cj-confirm-email').value='';
+     if(e('cj-confirm-email-t2'))e('cj-confirm-email-t2').value='';
+     if(e('cj-whatsapp-target'))e('cj-whatsapp-target').value='';
+   }else if(lastAdultState===true){
+     if(e('Contacts___email1'))e('Contacts___email1').value='';
+   }
+   lastAdultState=adult;
+ }
+  // BosConecta: mismo mecanismo que "Otro centro educativo": cada bloque
+  // completo es un DIV independiente. Se oculta el contenedor, no sus inputs.
+  // Fallback: si el editor cambia el id, localizar el bloque por un campo.
+  function showWholeSection(id, visible, fieldId){
+    var section=e(id);
+    if(!section&&fieldId){var field=e(fieldId);section=field&&field.closest('.section');}
+    if(!section)return;
+    section.hidden=!visible;
+    section.style.setProperty('display',visible?'block':'none','important');
+    section.setAttribute('aria-hidden',visible?'false':'true');
+  }
+  var root=e('savio-registro');
+  if(root){root.classList.toggle('cj-modo-animadores',adult);root.setAttribute('data-cj-contacto',adult?'animadores':'tutores');}
+  showWholeSection('cj-adult-contact-section',adult,'cj-adult-mobile');
+  showWholeSection('cj-t1-section',!adult,'Contacts___bosco_t1_nom_c');
+  showWholeSection('cj-t2-section',!adult,'Contacts___bosco_t2_nom_c');
+ if(e('cj-guardian-whatsapp-wrap'))e('cj-guardian-whatsapp-wrap').hidden=adult;
+ if(e('cj-adult-whatsapp-wrap'))e('cj-adult-whatsapp-wrap').hidden=!adult;
+ var guardianFields=document.querySelectorAll('#savio-registro [name^="Contacts___bosco_t1_"],#savio-registro [name^="Contacts___bosco_t2_"]');
+ guardianFields.forEach(function(x){x.disabled=adult;if(adult)x.required=false;});
+ T1Fields.forEach(function(id){setFieldState(id,adult,!adult);});
+ setFieldState('cj-confirm-email',adult,!adult);
+ setFieldState('Contacts___email1',false,!adult);
+ ['cj-adult-mobile','cj-adult-email','cj-adult-confirm-email'].forEach(function(id){setFieldState(id,!adult,adult);});
+ var minorFields=document.querySelectorAll('#savio-registro [data-cj-minor-only]');
+ minorFields.forEach(function(wrap){
+   wrap.hidden=adult;
+   wrap.querySelectorAll('input,select,textarea').forEach(function(field){field.disabled=adult;if(adult)field.required=false;});
+ });
+ // Campos heredados: solo actualizar si existen; las autorizaciones solicitadas fueron retiradas.
+ if(e('Contacts___bosco_menorwhatsapp_c'))e('Contacts___bosco_menorwhatsapp_c').required=!adult;
+ setFieldState('cj-whatsapp-target',adult,false);
+ setFieldState('cj-adult-whatsapp',!adult,false);
+ if(e('cj-emergency-title'))e('cj-emergency-title').textContent=adult?'Emergencias':'Emergencias y recogida';
+ if(e('cj-emergency-subtitle'))e('cj-emergency-subtitle').textContent=adult?'Datos para contactar en una emergencia':'Contacto de emergencia, recogida y autonomía';
+ // Evita saltos en la numeración si se ocultan las secciones de tutores para animadores.
+ Array.from(document.querySelectorAll('#savio-registro section.section')).filter(function(x){return !x.hidden;}).forEach(function(x,index){
+   var n=x.querySelector('.section-h .number');if(n)n.textContent=String(index+1).padStart(2,'0');
+ });
+ return adult;
+}
+function hasSecondTutor(){
+ var any=T2Fields.some(function(id){return value(id).length>0;});
+ var whatsapp=value('cj-whatsapp-target');
+ return any||whatsapp==='t2'||whatsapp==='both';
+}
+function configureT2(adult){
+ var present=!adult&&hasSecondTutor();
+ T2Fields.forEach(function(id){setFieldState(id,adult,present);});
+ document.querySelectorAll('#savio-registro [data-cj-t2-required]').forEach(function(el){el.hidden=!present;});
+ // El CRM debe recibir los campos ocultos de T2 solo si este se ha cumplimentado.
+ ['Contacts___bosco_t2_casa_origen_c','Contacts___bosco_t2_centrojuvenil_c','Contacts___bosco_t2_telefon_fixe_c'].forEach(function(id){if(e(id))e(id).disabled=adult;});
+ return present;
+}
+// Admite espacios, guiones, paréntesis y prefijos españoles (+34, 0034, 34).
+function digitsPhone(raw){
+ var v=(raw||'').trim().replace(/[\s.()\-]/g,'');
+ if(v.indexOf('+34')===0)v=v.slice(3);
+ else if(v.indexOf('0034')===0)v=v.slice(4);
+ else if(v.indexOf('34')===0&&v.length===11)v=v.slice(2);
+ return v;
+}
+function validPhone(raw,mobile){var d=digitsPhone(raw);return (mobile?/^[67]\d{8}$/:/^[6789]\d{8}$/).test(d);}
+function normalizedMobile(id){return validPhone(value(id),true)?digitsPhone(value(id)):value(id);}
+function normalizedContactPhone(id){return validPhone(value(id),false)?digitsPhone(value(id)):value(id);}
+function sync(){
+ var adult=applyAgeMode();
+ var hasT2=configureT2(adult);
+ if(adult){
+   if(e('Contacts___email1'))e('Contacts___email1').value=value('cj-adult-email');
+   if(e('Contacts___bosco_email_seguro_c'))e('Contacts___bosco_email_seguro_c').value=value('cj-adult-email');
+   if(e('Contacts___bosco_t1_correuelectronic_c'))e('Contacts___bosco_t1_correuelectronic_c').value='';
+   if(e('Contacts___phone_mobile'))e('Contacts___phone_mobile').value=normalizedMobile('cj-adult-mobile');
+   if(e('Contacts___phone_home'))e('Contacts___phone_home').value=normalizedMobile('cj-adult-mobile');
+   if(e('Contacts___bosco_t1_telefon_fixe_c'))e('Contacts___bosco_t1_telefon_fixe_c').value='';
+ }else{
+   copy('Contacts___email1','Contacts___bosco_t1_correuelectronic_c');
+   copy('Contacts___email1','Contacts___bosco_email_seguro_c');
+   var mobile=normalizedMobile('Contacts___bosco_t1_mobil_c');
+   if(e('Contacts___phone_mobile'))e('Contacts___phone_mobile').value=mobile;
+   if(e('Contacts___phone_home'))e('Contacts___phone_home').value=mobile;
+   if(e('Contacts___bosco_t1_telefon_fixe_c'))e('Contacts___bosco_t1_telefon_fixe_c').value=mobile;
+ }
+ if(e('Contacts___bosco_t2_telefon_fixe_c'))e('Contacts___bosco_t2_telefon_fixe_c').value=hasT2?normalizedMobile('Contacts___bosco_t2_mobil_c'):'';
+ if(e('Contacts___bosco_t1_casa_origen_c'))e('Contacts___bosco_t1_casa_origen_c').value=adult?'':'madridsavio';
+ if(e('Contacts___bosco_t1_centrojuvenil_c'))e('Contacts___bosco_t1_centrojuvenil_c').value=adult?'':'savio';
+ if(e('Contacts___bosco_t2_casa_origen_c'))e('Contacts___bosco_t2_casa_origen_c').value=hasT2?'madridsavio':'';
+ if(e('Contacts___bosco_t2_centrojuvenil_c'))e('Contacts___bosco_t2_centrojuvenil_c').value=hasT2?'savio':'';
+ var alt=value('cj-emergency-choice')==='otro';
+ [['name','Contacts___emergency_name_c'],['doc','Contacts___emergency_doc_c'],['phone','Contacts___emergency_phone_c']].forEach(function(pair){
+   var x=e('cj-emergency-other-'+pair[0]),wrap=e('cj-emergency-other-'+pair[0]+'-wrap');
+   if(wrap)wrap.hidden=!alt;
+   if(x)x.required=alt;
+ });
+ if(e('Contacts___emergency_name_c'))e('Contacts___emergency_name_c').value=alt?value('cj-emergency-other-name'):
+   (adult?[value('Contacts___first_name'),value('Contacts___last_name')]:[value('Contacts___bosco_t1_nom_c'),value('Contacts___bosco_t1_cognoms_c')]).filter(Boolean).join(' ');
+ if(e('Contacts___emergency_doc_c'))e('Contacts___emergency_doc_c').value=alt?value('cj-emergency-other-doc'):(adult?value('Contacts___stic_identification_number_c'):value('Contacts___bosco_t1_num_ident_c'));
+ if(e('Contacts___emergency_phone_c'))e('Contacts___emergency_phone_c').value=alt?normalizedContactPhone('cj-emergency-other-phone'):(adult?normalizedMobile('cj-adult-mobile'):normalizedMobile('Contacts___bosco_t1_mobil_c'));
+ var school=e('cj-school-choice'),other=e('cj-school-other'),wrap=e('cj-school-other-wrap');
+ if(school&&other&&wrap){
+   var isOther=school.value==='otro';
+   wrap.hidden=!isOther;other.required=isOther;
+   var schoolName=isOther?other.value.trim():'Santo Domingo Savio';
+   if(e('Contacts___informacion_adicional_c'))e('Contacts___informacion_adicional_c').value=schoolName;
+   if(e('Contacts___description'))e('Contacts___description').value=schoolName;
+ }
+
+}
+var liveIds=['Contacts___birthdate','Contacts___first_name','Contacts___last_name','Contacts___stic_identification_number_c',
+ 'Contacts___email1','Contacts___bosco_t1_mobil_c','cj-adult-email','cj-adult-confirm-email','cj-adult-mobile',
+ 'cj-school-choice','cj-school-other','Contacts___bosco_t1_nom_c','Contacts___bosco_t1_cognoms_c','Contacts___bosco_t1_num_ident_c',
+ 'Contacts___bosco_t2_nom_c','Contacts___bosco_t2_cognoms_c','Contacts___bosco_t2_relacion_c','Contacts___bosco_t2_mobil_c',
+ 'Contacts___bosco_t2_correuelectronic_c','cj-confirm-email-t2','Contacts___bosco_t2_num_ident_c',
+ 'Contacts___bosco_t2_identification_type_c','cj-emergency-choice','cj-emergency-other-name','cj-emergency-other-doc',
+ 'cj-emergency-other-phone','cj-whatsapp-target','cj-adult-whatsapp'];
+liveIds.forEach(function(id){var x=e(id);if(x){x.addEventListener('input',sync);x.addEventListener('change',sync);}});
+sync();
+function problem(message,focus){
+ // Crear el aviso unicamente cuando hay un error: nunca queda una caja roja vacia.
+ var box=e('cj-feedback');
+ if(!box){
+   var actions=document.querySelector('#savio-registro .actions');
+   if(actions&&actions.parentNode){
+     box=document.createElement('div');
+     box.id='cj-feedback';box.className='feedback';
+     box.setAttribute('role','alert');box.setAttribute('aria-live','polite');
+     actions.parentNode.insertBefore(box,actions);
+   }
+ }
+ if(box){box.textContent=message;box.scrollIntoView({behavior:'smooth',block:'center'});}
+ if(focus){var el=e(focus);if(el&&typeof el.focus==='function')el.focus({preventScroll:true});}
+ return false;
+}
+function isFilled(id){return value(id).length>0;}
+function dateValid(date){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date))return false;
+ var d=new Date(date+'T12:00:00');
+ if(Number.isNaN(d.getTime()))return false;
+ return d.toISOString().slice(0,10)===date && d<=new Date();
+}
+
+ // Identificación individual inspirada en los formularios publicados de Oldarra, Cruces y Atocha.
+ // No transforma ni inventa direcciones de correo; el correo familiar permanece intacto.
+ var savioIdentityState={generated:false,signature:''};
+ function savioIdentitySignature(){return [value('Contacts___first_name'),value('Contacts___last_name'),value('Contacts___birthdate')].join('|');}
+ function savioGenerateAlternativeId(){
+   var first=value('Contacts___first_name'),last=value('Contacts___last_name'),dob=value('Contacts___birthdate');
+   if(!first||!last||!dateValid(dob))return '';
+   var initials=(first.charAt(0)+last.charAt(0)).toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Z]/g,'X').slice(0,2);
+   if(initials.length!==2)return '';
+   var time=String(Date.now()).slice(-6);
+   var r;
+   if(window.crypto&&window.crypto.getRandomValues){var bytes=new Uint32Array(1);window.crypto.getRandomValues(bytes);r=100+bytes[0]%900;}
+   else r=100+Math.floor(Math.random()*900);
+   return initials+dob.replace(/-/g,'')+time+String(r);
+ }
+ function savioRefreshIdentity(force){
+   var type=value('Contacts___stic_identification_type_c');
+   var doc=e('Contacts___stic_identification_number_c');var wrap=e('cj-participant-id-wrap');
+   if(!doc)return;
+   if(type==='other'){
+     if(wrap)wrap.hidden=true;
+     doc.readOnly=true;
+     var sig=savioIdentitySignature();
+     if(force||!savioIdentityState.generated||sig!==savioIdentityState.signature||!doc.value.trim()){
+       doc.value=savioGenerateAlternativeId();
+       savioIdentityState.generated=!!doc.value;
+       savioIdentityState.signature=sig;
+     }
+     
+   }else{
+     if(wrap)wrap.hidden=false;
+     doc.readOnly=false;
+     if(savioIdentityState.generated)doc.value='';
+     savioIdentityState.generated=false;savioIdentityState.signature='';
+     
+   }
+ }
+ ['Contacts___first_name','Contacts___last_name','Contacts___birthdate'].forEach(function(id){
+   var el=e(id);if(el){el.addEventListener('input',function(){savioRefreshIdentity(false);});el.addEventListener('change',function(){savioRefreshIdentity(false);});}
+ });
+ var savioType=e('Contacts___stic_identification_type_c');
+ if(savioType)savioType.addEventListener('change',function(){savioRefreshIdentity(true);});
+ savioRefreshIdentity(false);
+
+
+
+ // Asignacion automatica segun curso escolar, sin intervencion de la familia.
+// assigned_user_id = identificador del RESPONSABLE correspondiente a ese curso.
+// Contacts___bosco_grupos_c = codigo de GRUPO asociado al curso.
+// No confundir los identificadores de responsables con los codigos de grupo.
+// Se conserva el identificador original de la actividad y submitForm(form).
+var savioGroups = {
+ 'priprim':  {group:'cjsavio_chiqui',    assigned:'000003ee-6f16-0610-55b5-6a3bdd2fdb94'}, // Chiqui1 - 1 Primaria (Prechiqui)
+ 'segprim':  {group:'cjsavio_chiqui',    assigned:'000005c5-1257-b6d3-96b5-6a3bde297bdb'}, // Chiqui2 - 2 Primaria (Prechiqui)
+ 'terprim':  {group:'cjsavio_chiqui',    assigned:'00000307-b0c0-ef18-b42a-6a3bdebc64a2'}, // Chiqui3 - 3 Primaria
+ 'cuarprim': {group:'cjsavio_chiqui',    assigned:'000000a0-674f-2729-9ec9-6a3bdf1e9ade'}, // Chiqui4 - 4 Primaria
+ 'quinprim': {group:'cjsavio_chiqui',    assigned:'00000afc-c87d-030c-b468-6a3be0c20ea4'}, // Chiqui5 - 5 Primaria
+ 'sextprim': {group:'cjsavio_chiqui',    assigned:'0000009a-89d6-c98c-bbe3-6a3be09b1410'}, // Chiqui6 - 6 Primaria
+ 'primeso':  {group:'savio_preas',       assigned:'00000da8-2c7f-7db1-4d49-6a3be1e7cb85'}, // Preas1 - 1 ESO
+ 'segeso':   {group:'savio_preas',       assigned:'000004d7-1fc5-a1f8-a5f8-6a3be1ecdb44'}, // Preas2 - 2 ESO
+ 'tereso':   {group:'savio_jovenes',     assigned:'0000081c-eeac-8cf7-503a-6a3be23a686b'}, // Jovenes1 - 3 ESO
+ 'cuareso':  {group:'savio_jovenes',     assigned:'00000915-000a-c5e7-f564-6a3be3a39d1e'}, // Jovenes2 - 4 ESO
+ 'primbach': {group:'savio_jovenes',     assigned:'00000618-98f3-7d22-521a-6a3be31c9451'}, // Jovenes3 - 1 Bachillerato
+ 'segbach':  {group:'savio_jovenes',     assigned:'00000489-fc33-3eae-8997-6a3be4cfe96b'}, // Jovenes4 - 2 Bachillerato
+ 'univ':     {group:'savio_jovenes',     assigned:'0000042c-f55d-721e-1dc8-6a3be41ef4e3'}, // Jovenes5 - 1 Universidad
+ 'other':    {group:'savio_animadores',   assigned:'46e0dfd6-9cfd-6514-f90d-668528bbfb08'}  // Animadores / Voluntariado
+};
+function savioSyncGroup(){
+ var course=value('Contacts___curso_escolar_c');
+ var config=Object.prototype.hasOwnProperty.call(savioGroups,course)?savioGroups[course]:null;
+ if(e('Contacts___bosco_grupos_c'))e('Contacts___bosco_grupos_c').value=config?config.group:'';
+ if(e('assigned_user_id'))e('assigned_user_id').value=config?config.assigned:'';
+ if(e('Contacts___bosco_evento_origen_c'))e('Contacts___bosco_evento_origen_c').value=config?'00000d42-edce-5627-c805-6ac783043a06':'';
+}
+var savioCourseChoice=e('Contacts___curso_escolar_c');
+if(savioCourseChoice){
+ savioCourseChoice.addEventListener('input',function(){savioSyncGroup();sync();});
+ savioCourseChoice.addEventListener('change',function(){savioSyncGroup();sync();});
+}
+savioSyncGroup();
+
+function ensureContactPhones(){
+ var adult=adultApplicant();
+ var arr=adult?[['cj-adult-mobile',true,true]]:[['Contacts___bosco_t1_mobil_c',true,true]];
+ if(!adult&&hasSecondTutor())arr.push(['Contacts___bosco_t2_mobil_c',true,true]);
+ if(value('cj-emergency-choice')==='otro')arr.push(['cj-emergency-other-phone',false,true]);
+ for(var i=0;i<arr.length;i++){
+   var item=arr[i],id=item[0],must=item[2],raw=value(id);
+   if(!raw&&must)return problem('Indica un teléfono de contacto válido.',id);
+   if(raw&&!validPhone(raw,item[1]))return problem(item[1]?
+      'Introduce un móvil español de 9 cifras que empiece por 6 o 7. Puedes incluir espacios o +34.':
+      'Introduce un teléfono español de 9 cifras. Puedes incluir espacios o +34.',id);
+ }
+ return true;
+}
+window.cjSend=function(form){
+ // Evitar envios fallidos al abrir este fragmento como HTML independiente.
+ if(!form||form.id!=='WebToLeadForm')return problem('Para enviar la inscripción, este fragmento debe estar integrado dentro del formulario original de BosConecta.');
+ sync();savioSyncGroup();savioRefreshIdentity(false);sync();
+ if(e('cj-feedback'))e('cj-feedback').remove();
+ if(!Object.prototype.hasOwnProperty.call(savioGroups,value('Contacts___curso_escolar_c')))return problem('Selecciona un curso escolar válido.','Contacts___curso_escolar_c');
+  if(!value('Contacts___bosco_grupos_c')||!value('assigned_user_id'))return problem('No se ha podido asignar el grupo y el responsable. Vuelve a seleccionar el curso escolar.','Contacts___curso_escolar_c');
+ if(!dateValid(value('Contacts___birthdate')))return problem('Comprueba la fecha de nacimiento del participante.','Contacts___birthdate');
+ if(value('Contacts___stic_identification_type_c')==='other'&&!value('Contacts___stic_identification_number_c'))return problem('Completa el nombre, los apellidos y la fecha de nacimiento del participante.','Contacts___birthdate');
+ var adult=adultApplicant();
+ if(!ensureContactPhones())return false;
+ // Si T2 se utiliza, todos sus campos deben ser completos; si está ausente no se genera tutor adicional.
+ if(!adult&&hasSecondTutor()){
+   for(var i=0;i<T2Fields.length;i++){
+     if(!value(T2Fields[i]))return problem('Para añadir un segundo tutor hay que completar sus datos, teléfono, correo y documento.',T2Fields[i]);
+   }
+   if(value('Contacts___bosco_t2_correuelectronic_c').toLowerCase()!==value('cj-confirm-email-t2').toLowerCase())
+      return problem('El correo electrónico del segundo tutor y su confirmación no coinciden.','cj-confirm-email-t2');
+ }
+ if(!form.checkValidity()){form.reportValidity();return false;}
+ var mail=adult?'cj-adult-email':'Contacts___email1', confirm=adult?'cj-adult-confirm-email':'cj-confirm-email';
+ if(value(mail).toLowerCase()!==value(confirm).toLowerCase())return problem('El correo electrónico y su confirmación no coinciden.',confirm);
+ if(value('cj-school-choice')==='otro'&&!value('cj-school-other'))return problem('Indica el centro educativo.','cj-school-other');
+ var num=value('Contacts___stic_identification_number_c'),type=value('Contacts___stic_identification_type_c');
+ if(num&&!type)return problem('Selecciona el tipo de documento del participante.','Contacts___stic_identification_type_c');
+ if(!adult){
+   var docs=[num,value('Contacts___bosco_t1_num_ident_c'),value('Contacts___bosco_t2_num_ident_c')].filter(Boolean).map(function(x){return x.toUpperCase();});
+   if(docs.length!==new Set(docs).size)return problem('Los documentos del participante y de los tutores deben ser distintos. Si el participante no tiene documento, selecciona «Otros».','Contacts___stic_identification_type_c');
+ }
+ if(typeof submitForm!=='function')return problem('No se ha cargado la función de envío de BosConecta. No se ha realizado la inscripción.');
+ // Normalizar a nueve cifras todos los teléfonos que finalmente se envían.
+ if(adult)e('cj-adult-mobile').value=digitsPhone(value('cj-adult-mobile'));
+ else{
+   e('Contacts___bosco_t1_mobil_c').value=digitsPhone(value('Contacts___bosco_t1_mobil_c'));
+   if(hasSecondTutor())e('Contacts___bosco_t2_mobil_c').value=digitsPhone(value('Contacts___bosco_t2_mobil_c'));
+ }
+ if(value('cj-emergency-choice')==='otro')e('cj-emergency-other-phone').value=digitsPhone(value('cj-emergency-other-phone'));
+ sync();
+ // Se preserva la función nativa de BosConecta y los parámetros de inscripción/promoción existentes.
+ return submitForm(form);
+};
+if(frm)frm.addEventListener('submit',function(evt){evt.preventDefault();window.cjSend(frm);});
+})();
+</script>
+<script>
+(function(){
+ function reportHeight(){
+   window.parent.postMessage({type:'savio-form-height',height:document.documentElement.scrollHeight},window.location.origin);
+ }
+ window.addEventListener('load',reportHeight);
+ window.addEventListener('resize',reportHeight);
+ if('ResizeObserver' in window)new ResizeObserver(reportHeight).observe(document.body);
+})();
+</script>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Formulario de inscripción 2026/2027 del Centro Juvenil Savio." />
+    <title>Inscripción | Centro Juvenil Savio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="registration-page">
+    <header class="site-header" data-header>
+      <a class="brand" href="index.html#inicio" aria-label="Centro Juvenil Savio">
+        <img src="assets/logo-inicio.png" alt="Centro Juvenil Savio" />
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" data-menu-toggle>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="main-nav" data-nav>
+        <a href="index.html#secciones">Secciones</a>
+        <a href="index.html#estilo">Estilo</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="tienda.html">Tienda online</a>
+        <a href="canal-denuncias.html">Canal de denuncias</a>
+        <a href="https://confedonbosco.org/areaprivada/">Área privada</a>
+        <a class="nav-cta" href="inscripcion.html" aria-current="page">Inscríbete</a>
+      </nav>
+    </header>
+
+    <main class="registration-main">
+      <section class="registration-hero">
+        <div class="registration-hero-copy construction-enter">
+          <p class="section-kicker">Curso 2026/2027</p>
+          <h1>Inscríbete</h1>
+          <p>Rellena una inscripción por participante. Te acompañamos paso a paso.</p>
+        </div>
+        <div class="registration-stamp construction-enter" role="note">
+          <span>Importante</span>
+          <div>
+            <strong>Solo para nuevos socios</strong>
+            <small>Si ya eres socio, no necesitas volver a inscribirte.</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="registration-form-section" aria-label="Formulario de inscripción">
+        <iframe
+          class="registration-frame"
+          src="formulario-inscripcion.html"
+          title="Formulario de inscripción del Centro Juvenil Savio"
+          data-registration-frame
+        ></iframe>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="assets/centro-juvenil-white.png" alt="Centro Juvenil Savio" />
+      <p>Centro Juvenil Savio © 2026 · Salesianos Santo Domingo Savio <span aria-hidden="true">&hearts;</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      const registrationFrame = document.querySelector("[data-registration-frame]");
+
+      window.addEventListener("message", (event) => {
+        if (event.origin !== window.location.origin || event.data?.type !== "savio-form-height") return;
+        registrationFrame.style.height = `${Math.max(900, event.data.height)}px`;
+      });
+    </script>
+  </body>
+</html>

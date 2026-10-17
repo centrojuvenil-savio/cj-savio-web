@@ -38,33 +38,6 @@ function updateHeader() {
 updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
-const seasonAlert = document.querySelector("[data-season-alert]");
-const seasonAlertClose = document.querySelector("[data-season-alert-close]");
-let seasonAlertClosed = false;
-
-function closeSeasonAlert() {
-  if (!seasonAlert) return;
-  seasonAlertClosed = true;
-  seasonAlert.classList.remove("is-visible");
-  window.setTimeout(() => {
-    seasonAlert.hidden = true;
-  }, 260);
-}
-
-function updateSeasonAlert() {
-  if (!seasonAlert || seasonAlertClosed || seasonAlert.classList.contains("is-visible")) return;
-  if (window.scrollY < 140) return;
-  seasonAlert.hidden = false;
-  window.requestAnimationFrame(() => seasonAlert.classList.add("is-visible"));
-}
-
-if (seasonAlert) {
-  seasonAlert.hidden = true;
-  seasonAlertClose?.addEventListener("click", closeSeasonAlert);
-  window.addEventListener("scroll", updateSeasonAlert, { passive: true });
-  updateSeasonAlert();
-}
-
 const revealItems = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
