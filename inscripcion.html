@@ -203,7 +203,7 @@ body{margin:0!important;padding:0!important;background:#f3f3f3!important;color:#
 </ol></div>
 <input id="event_id" name="event_id" type="hidden" value="00000d42-edce-5627-c805-6ac783043a06" /> <input id="Contacts___bosco_evento_origen_c" name="Contacts___bosco_evento_origen_c" type="hidden" value="" /> <input id="redirect_url" name="redirect_url" type="hidden" value="https://www.cjsavio.es/" /> <input id="redirect_ko_url" name="redirect_ko_url" type="hidden" value="https://www.cjsavio.es/" /> <input id="validate_identification_number" name="validate_identification_number" type="hidden" value="1" /> <input id="assigned_user_id" name="assigned_user_id" type="hidden" value="" /> <!-- Inicio de curso 2026/27: Atocha, Cruces y Oldarra incluyen este indicador en sus altas.
      Es un dato del PARTICIPANTE, no del tutor; no sustituye la validación AP.
-     El CRM debe confirmar si procesa este campo en el punto de entrada del formulario. --> <input id="Contacts___bosco_promocionado_curso_actual_c" name="Contacts___bosco_promocionado_curso_actual_c" type="hidden" value="1" /> <input id="req_id" name="req_id" type="hidden" value="Contacts___first_name;Contacts___last_name;Contacts___email1;Contacts___bosco_centrojuvenil_c;Contacts___stic_identification_type_c;Contacts___stic_identification_number_c;Contacts___bosco_grupos_c;" /> <input id="bool_id" name="bool_id" type="hidden" value="" /> <input id="Contacts___description" name="Contacts___description" type="hidden" value="" /><input id="webFormClass" name="webFormClass" type="hidden" value="EventInscription" /> <input id="stic_Payment_Commitments___payment_type" name="stic_Payment_Commitments___payment_type" type="hidden" value="" /> <input id="stic_Payment_Commitments___periodicity" name="stic_Payment_Commitments___periodicity" type="hidden" value="punctual" /> <input id="language" name="language" type="hidden" value="es_ES" /> <input id="defParams" name="defParams" type="hidden" value="%7B%22include_payment_commitment%22%3A0%2C%22include_organization%22%3A0%2C%22account_code_mandatory%22%3A0%2C%22include_registration%22%3A0%2C%22account_name_optional%22%3A0%2C%22email_template_id%22%3A%22%22%2C%22include_recaptcha%22%3A0%2C%22recaptcha_configKeys%22%3A%5B%22%28General%29%22%5D%2C%22recaptcha_selected%22%3A%22%22%7D" /> <input id="timeZone" name="timeZone" type="hidden" value="" />
+     El CRM debe confirmar si procesa este campo en el punto de entrada del formulario. --> <input id="Contacts___bosco_promocionado_curso_actual_c" name="Contacts___bosco_promocionado_curso_actual_c" type="hidden" value="1" /> <input id="req_id" name="req_id" type="hidden" value="Contacts___first_name;Contacts___last_name;Contacts___email1;Contacts___bosco_centrojuvenil_c;Contacts___stic_identification_type_c;Contacts___stic_identification_number_c;Contacts___bosco_grupos_c;" /> <input id="bool_id" name="bool_id" type="hidden" value="" /> <input id="Contacts___description" name="Contacts___description" type="hidden" value="" /><input id="webFormClass" name="webFormClass" type="hidden" value="EventInscription" /> <input id="stic_Payment_Commitments___payment_type" name="stic_Payment_Commitments___payment_type" type="hidden" value="" /> <input id="stic_Payment_Commitments___periodicity" name="stic_Payment_Commitments___periodicity" type="hidden" value="punctual" /> <input id="language" name="language" type="hidden" value="es_ES" /> <input id="defParams" name="defParams" type="hidden" value="%7B%22include_payment_commitment%22%3A0%2C%22include_organization%22%3A0%2C%22account_code_mandatory%22%3A0%2C%22include_registration%22%3A0%2C%22account_name_optional%22%3A0%2C%22email_template_id%22%3A%2275d353ff-fcf2-7276-79fa-668bbb2242a8%22%2C%22include_recaptcha%22%3A0%2C%22recaptcha_configKeys%22%3A%5B%22%28General%29%22%5D%2C%22recaptcha_selected%22%3A%22%22%7D" /> <input id="timeZone" name="timeZone" type="hidden" value="" />
 <div class="section">
 <div class="section-h"><span class="number">01</span>
 <div>
@@ -1131,6 +1131,21 @@ function savioSyncGroup(){
  if(e('Contacts___bosco_grupos_c'))e('Contacts___bosco_grupos_c').value=config?config.group:'';
  if(e('assigned_user_id'))e('assigned_user_id').value=config?config.assigned:'';
  if(e('Contacts___bosco_evento_origen_c'))e('Contacts___bosco_evento_origen_c').value=config?'00000d42-edce-5627-c805-6ac783043a06':'';
+ // Mantener sincronizada la plantilla de confirmacion cuando se cambia el curso.
+ savioSyncEmailTemplate();
+}
+// Una unica confirmacion: animadores reciben su plantilla especifica; resto de cursos, la general.
+// No cambiar otros parametros operativos del formulario de BosConecta.
+function savioSyncEmailTemplate(){
+ var field=e('defParams');
+ if(!field)return false;
+ try{
+   var params=JSON.parse(decodeURIComponent(field.value));
+   if(!params||typeof params!=='object'||Array.isArray(params))return false;
+   params.email_template_id=adultApplicant()?'7463524c-837e-614c-dea2-668bbe7391c8':'75d353ff-fcf2-7276-79fa-668bbb2242a8';
+   field.value=encodeURIComponent(JSON.stringify(params));
+   return true;
+ }catch(error){return false;}
 }
 var savioCourseChoice=e('Contacts___curso_escolar_c');
 if(savioCourseChoice){
@@ -1195,6 +1210,8 @@ window.cjSend=function(form){
  }
  if(value('cj-emergency-choice')==='otro')e('cj-emergency-other-phone').value=digitsPhone(value('cj-emergency-other-phone'));
  sync();
+ // Comprobar la plantilla justo antes de usar el envio nativo de BosConecta.
+ if(!savioSyncEmailTemplate())return problem('No se ha podido configurar el correo de confirmación. No se ha enviado la inscripción.');
  // Se preserva la función nativa de BosConecta y los parámetros de inscripción/promoción existentes.
  return submitForm(form);
 };
